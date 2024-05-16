@@ -5,9 +5,11 @@
 //	Where my children
 //
 
-class LaunchAssembly: DependencyFactory {
+import DI
+
+public final class LaunchAssembly: DependencyFactory {
     
-    func module() -> LaunchModuleInput {
+    public func module() -> LaunchModuleInput {
         return unshared(
             factory: { [unowned self] in
                 let presenter = self.presenter()
@@ -61,5 +63,4 @@ class LaunchAssembly: DependencyFactory {
             }
         )
     }
-    
 }

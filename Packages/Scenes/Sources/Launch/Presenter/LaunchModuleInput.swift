@@ -5,4 +5,4 @@
 //	Where my children
 //
 
-protocol LaunchModuleInput: BaseModuleInput { }
+public protocol LaunchModuleInput: BaseModuleInput { }
