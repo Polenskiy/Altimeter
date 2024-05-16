@@ -7,7 +7,7 @@
 //
 import UIKit
 
-protocol BaseViewControllerInput: AnyObject {
+public protocol BaseViewControllerInput: AnyObject {
     var viewController: UIViewController { get }
     
     func setupInitialState()
@@ -19,11 +19,11 @@ extension BaseViewControllerInput where Self: UIViewController {
     }
 }
 
-protocol BaseViewControllerOutput: AnyObject {
+public protocol BaseViewControllerOutput: AnyObject {
     func didTriggerViewReadyEvent()
 }
 
-protocol BaseModuleInput: AnyObject {
+public protocol BaseModuleInput: AnyObject {
     var inputView: BaseViewControllerInput! { get }
     
     var viewController: UIViewController { get }

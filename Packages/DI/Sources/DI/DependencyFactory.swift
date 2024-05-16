@@ -42,10 +42,9 @@ open class DependencyFactory {
         let lifecycle: Lifecycle
         let name: String
         
-        var hashValue: Int {
-            return lifecycle.hashValue ^ name.hashValue
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(lifecycle.hashValue ^ name.hashValue)
         }
-        
         var description: String {
             return "\(lifecycle)(\(name))"
         }
