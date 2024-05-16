@@ -7,7 +7,7 @@
 
 import UIKit
 
-class <%module%>Router {
+final class <%module%>Router {
     
     weak var view: UIViewController!
     

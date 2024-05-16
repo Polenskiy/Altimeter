@@ -5,7 +5,7 @@
 //	<%project%>
 //
 
-class <%module%>Interactor {
+final class <%module%>Interactor {
     
     weak var output: <%module%>InteractorOutput?
     
