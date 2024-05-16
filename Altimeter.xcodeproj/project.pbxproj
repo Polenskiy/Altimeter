@@ -13,6 +13,19 @@
 		A59425602BF4FE3100143602 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = A594255F2BF4FE3100143602 /* Base */; };
 		A59425622BF4FE3200143602 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A59425612BF4FE3200143602 /* Assets.xcassets */; };
 		A59425652BF4FE3200143602 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = A59425642BF4FE3200143602 /* Base */; };
+		A820B2062BF5F13000E4899B /* generatemodule.py in Resources */ = {isa = PBXBuildFile; fileRef = A820B1F22BF5F13000E4899B /* generatemodule.py */; };
+		A820B2072BF5F13000E4899B /* <%module%>Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = A820B1F32BF5F13000E4899B /* <%module%>Assembly.swift */; };
+		A820B2082BF5F13000E4899B /* <%module%>Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A820B1F52BF5F13000E4899B /* <%module%>Interactor.swift */; };
+		A820B2092BF5F13000E4899B /* <%module%>InteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A820B1F62BF5F13000E4899B /* <%module%>InteractorInput.swift */; };
+		A820B20A2BF5F13000E4899B /* <%module%>InteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A820B1F72BF5F13000E4899B /* <%module%>InteractorOutput.swift */; };
+		A820B20B2BF5F13000E4899B /* <%module%>ModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A820B1F92BF5F13000E4899B /* <%module%>ModuleInput.swift */; };
+		A820B20C2BF5F13000E4899B /* <%module%>ModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A820B1FA2BF5F13000E4899B /* <%module%>ModuleOutput.swift */; };
+		A820B20D2BF5F13000E4899B /* <%module%>Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A820B1FB2BF5F13000E4899B /* <%module%>Presenter.swift */; };
+		A820B20E2BF5F13000E4899B /* <%module%>Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = A820B1FD2BF5F13000E4899B /* <%module%>Router.swift */; };
+		A820B20F2BF5F13000E4899B /* <%module%>RouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A820B1FE2BF5F13000E4899B /* <%module%>RouterInput.swift */; };
+		A820B2102BF5F13000E4899B /* <%module%>ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A820B2002BF5F13000E4899B /* <%module%>ViewController.swift */; };
+		A820B2112BF5F13000E4899B /* <%module%>ViewControllerInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A820B2012BF5F13000E4899B /* <%module%>ViewControllerInput.swift */; };
+		A820B2122BF5F13000E4899B /* <%module%>ViewControllerOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A820B2022BF5F13000E4899B /* <%module%>ViewControllerOutput.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +37,19 @@
 		A59425612BF4FE3200143602 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A59425642BF4FE3200143602 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A59425662BF4FE3200143602 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A820B1F22BF5F13000E4899B /* generatemodule.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = generatemodule.py; sourceTree = "<group>"; };
+		A820B1F32BF5F13000E4899B /* <%module%>Assembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "<%module%>Assembly.swift"; sourceTree = "<group>"; };
+		A820B1F52BF5F13000E4899B /* <%module%>Interactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "<%module%>Interactor.swift"; sourceTree = "<group>"; };
+		A820B1F62BF5F13000E4899B /* <%module%>InteractorInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "<%module%>InteractorInput.swift"; sourceTree = "<group>"; };
+		A820B1F72BF5F13000E4899B /* <%module%>InteractorOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "<%module%>InteractorOutput.swift"; sourceTree = "<group>"; };
+		A820B1F92BF5F13000E4899B /* <%module%>ModuleInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "<%module%>ModuleInput.swift"; sourceTree = "<group>"; };
+		A820B1FA2BF5F13000E4899B /* <%module%>ModuleOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "<%module%>ModuleOutput.swift"; sourceTree = "<group>"; };
+		A820B1FB2BF5F13000E4899B /* <%module%>Presenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "<%module%>Presenter.swift"; sourceTree = "<group>"; };
+		A820B1FD2BF5F13000E4899B /* <%module%>Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "<%module%>Router.swift"; sourceTree = "<group>"; };
+		A820B1FE2BF5F13000E4899B /* <%module%>RouterInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "<%module%>RouterInput.swift"; sourceTree = "<group>"; };
+		A820B2002BF5F13000E4899B /* <%module%>ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "<%module%>ViewController.swift"; sourceTree = "<group>"; };
+		A820B2012BF5F13000E4899B /* <%module%>ViewControllerInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "<%module%>ViewControllerInput.swift"; sourceTree = "<group>"; };
+		A820B2022BF5F13000E4899B /* <%module%>ViewControllerOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "<%module%>ViewControllerOutput.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +82,7 @@
 		A59425572BF4FE3100143602 /* Altimeter */ = {
 			isa = PBXGroup;
 			children = (
+				A820B1F02BF5F0A200E4899B /* sripts */,
 				A59425582BF4FE3100143602 /* AppDelegate.swift */,
 				A594255A2BF4FE3100143602 /* SceneDelegate.swift */,
 				A594255C2BF4FE3100143602 /* ViewController.swift */,
@@ -65,6 +92,90 @@
 				A59425662BF4FE3200143602 /* Info.plist */,
 			);
 			path = Altimeter;
+			sourceTree = "<group>";
+		};
+		A820B1F02BF5F0A200E4899B /* sripts */ = {
+			isa = PBXGroup;
+			children = (
+				A820B1F12BF5F0E800E4899B /* Module */,
+			);
+			path = sripts;
+			sourceTree = "<group>";
+		};
+		A820B1F12BF5F0E800E4899B /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				A820B1F22BF5F13000E4899B /* generatemodule.py */,
+				A820B2052BF5F13000E4899B /* ViperTemplate */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		A820B1F42BF5F13000E4899B /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				A820B1F32BF5F13000E4899B /* <%module%>Assembly.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		A820B1F82BF5F13000E4899B /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				A820B1F52BF5F13000E4899B /* <%module%>Interactor.swift */,
+				A820B1F62BF5F13000E4899B /* <%module%>InteractorInput.swift */,
+				A820B1F72BF5F13000E4899B /* <%module%>InteractorOutput.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		A820B1FC2BF5F13000E4899B /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A820B1F92BF5F13000E4899B /* <%module%>ModuleInput.swift */,
+				A820B1FA2BF5F13000E4899B /* <%module%>ModuleOutput.swift */,
+				A820B1FB2BF5F13000E4899B /* <%module%>Presenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A820B1FF2BF5F13000E4899B /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				A820B1FD2BF5F13000E4899B /* <%module%>Router.swift */,
+				A820B1FE2BF5F13000E4899B /* <%module%>RouterInput.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		A820B2032BF5F13000E4899B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A820B2002BF5F13000E4899B /* <%module%>ViewController.swift */,
+				A820B2012BF5F13000E4899B /* <%module%>ViewControllerInput.swift */,
+				A820B2022BF5F13000E4899B /* <%module%>ViewControllerOutput.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A820B2042BF5F13000E4899B /* <%module%> */ = {
+			isa = PBXGroup;
+			children = (
+				A820B1F42BF5F13000E4899B /* Assembly */,
+				A820B1F82BF5F13000E4899B /* Interactor */,
+				A820B1FC2BF5F13000E4899B /* Presenter */,
+				A820B1FF2BF5F13000E4899B /* Router */,
+				A820B2032BF5F13000E4899B /* View */,
+			);
+			path = "<%module%>";
+			sourceTree = "<group>";
+		};
+		A820B2052BF5F13000E4899B /* ViperTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				A820B2042BF5F13000E4899B /* <%module%> */,
+			);
+			path = ViperTemplate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A59425622BF4FE3200143602 /* Assets.xcassets in Resources */,
+				A820B2062BF5F13000E4899B /* generatemodule.py in Resources */,
 				A59425652BF4FE3200143602 /* Base in Resources */,
 				A59425602BF4FE3100143602 /* Base in Resources */,
 			);
@@ -139,7 +251,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				A594255D2BF4FE3100143602 /* ViewController.swift in Sources */,
+				A820B20C2BF5F13000E4899B /* <%module%>ModuleOutput.swift in Sources */,
+				A820B20E2BF5F13000E4899B /* <%module%>Router.swift in Sources */,
+				A820B2082BF5F13000E4899B /* <%module%>Interactor.swift in Sources */,
+				A820B2072BF5F13000E4899B /* <%module%>Assembly.swift in Sources */,
+				A820B2092BF5F13000E4899B /* <%module%>InteractorInput.swift in Sources */,
+				A820B20A2BF5F13000E4899B /* <%module%>InteractorOutput.swift in Sources */,
 				A59425592BF4FE3100143602 /* AppDelegate.swift in Sources */,
+				A820B2102BF5F13000E4899B /* <%module%>ViewController.swift in Sources */,
+				A820B2122BF5F13000E4899B /* <%module%>ViewControllerOutput.swift in Sources */,
+				A820B2112BF5F13000E4899B /* <%module%>ViewControllerInput.swift in Sources */,
+				A820B20B2BF5F13000E4899B /* <%module%>ModuleInput.swift in Sources */,
+				A820B20F2BF5F13000E4899B /* <%module%>RouterInput.swift in Sources */,
+				A820B20D2BF5F13000E4899B /* <%module%>Presenter.swift in Sources */,
 				A594255B2BF4FE3100143602 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
