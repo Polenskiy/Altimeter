@@ -7,7 +7,7 @@
 
 import UIKit
 
-class <%module%>ViewController: UIViewController {
+final class <%module%>ViewController: UIViewController {
     
     var output: <%module%>ViewControllerOutput?
     

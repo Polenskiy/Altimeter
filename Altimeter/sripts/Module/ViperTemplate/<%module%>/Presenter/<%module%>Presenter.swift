@@ -7,7 +7,7 @@
 
 import UIKit
 
-class <%module%>Presenter: BasePresenter {
+final class <%module%>Presenter: BasePresenter {
     
     var interactor: <%module%>InteractorInput!
     weak var view: <%module%>ViewControllerInput! {

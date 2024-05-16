@@ -5,7 +5,7 @@
 //	<%project%>
 //
 
-class <%module%>Assembly: DependencyFactory {
+public final class <%module%>Assembly: DependencyFactory {
     
     func module() -> <%module%>ModuleInput {
         return unshared(
@@ -31,33 +31,33 @@ class <%module%>Assembly: DependencyFactory {
     }
     
     private func router() -> <%module%>Router {
-        return unshared(
+        unshared(
             factory: {
-                return <%module%>Router()
+                <%module%>Router()
             }
         )
     }
     
     private func view() -> <%module%>ViewController {
-        return unshared(
+        unshared(
             factory: {
-                return <%module%>ViewController()
+                <%module%>ViewController()
             }
         )
     }
     
     private func interactor() -> <%module%>Interactor {
-        return unshared(
+        unshared(
             factory: {
-                return <%module%>Interactor()
+                <%module%>Interactor()
             }
         )
     }
     
     private func presenter() -> <%module%>Presenter {
-        return unshared(
+        unshared(
             factory: {
-                return <%module%>Presenter()
+                <%module%>Presenter()
             }
         )
     }
