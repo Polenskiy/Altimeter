@@ -38,12 +38,13 @@ open class DependencyFactory {
         case scoped
     }
     
-    struct InstanceKey : Hashable, CustomStringConvertible {
+    struct InstanceKey: Hashable, CustomStringConvertible {
         let lifecycle: Lifecycle
         let name: String
         
         func hash(into hasher: inout Hasher) {
-            hasher.combine(lifecycle.hashValue ^ name.hashValue)
+            hasher.combine(lifecycle.hashValue)
+            hasher.combine(name.hashValue)
         }
         var description: String {
             return "\(lifecycle)(\(name))"
@@ -63,7 +64,7 @@ open class DependencyFactory {
     
     public required init() { }
     
-    private static var containers:[String: DependencyFactory] = [:]
+    private static var containers: [String: DependencyFactory] = [:]
     public static func assembly<T>() -> T where T: DependencyFactory {
         let name = String(describing: T.self)
         if let instance = containers[name] as? T {
