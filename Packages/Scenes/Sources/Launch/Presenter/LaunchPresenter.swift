@@ -26,7 +26,7 @@ extension LaunchPresenter {
                 case .noInternet:
                     return .init(title: "No internet connection", shouldShowBorder: true)
                 case .noGPS:
-                    return .init(title: "No PGS connection", shouldShowBorder: true)
+                    return .init(title: "No GPS connection", shouldShowBorder: true)
                 }
             }
         }
