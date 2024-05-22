@@ -29,14 +29,6 @@ class LaunchViewController: UIViewController {
         return view
     }()
     
-    private let blurEffect: UIVisualEffectView = {
-        let blur = UIBlurEffect(style: .dark)
-        let blurEffectView = UIVisualEffectView(effect: blur)
-//        blurEffectView.alpha = 0.5
-        blurEffectView.translatesAutoresizingMaskIntoConstraints = false
-        return blurEffectView
-        }()
-    
     // MARK: - Functions
     
     override func viewDidLoad() {
@@ -87,24 +79,14 @@ private extension LaunchViewController {
     }
     
     func configureErrorView() {
-        blurEffect.contentView.addSubview(errorView)
+        view.addSubview(errorView)
         NSLayoutConstraint.activate([
-            errorView.leadingAnchor.constraint(equalTo: blurEffect.leadingAnchor),
-            errorView.trailingAnchor.constraint(equalTo: blurEffect.trailingAnchor),
-            errorView.topAnchor.constraint(equalTo: blurEffect.topAnchor),
-            errorView.bottomAnchor.constraint(equalTo: blurEffect.bottomAnchor)
+            errorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            errorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            errorView.topAnchor.constraint(equalTo: view.topAnchor),
+            errorView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
-    
-    func configureBlurEffect() {
-            view.addSubview(blurEffect)
-            NSLayoutConstraint.activate([
-                blurEffect.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                blurEffect.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                blurEffect.topAnchor.constraint(equalTo: view.topAnchor),
-                blurEffect.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-            ])
-        }
     
     func setNormalState(viewModel: LaunchPresenter.ViewModel) {
         titleView.isHidden = false
@@ -116,7 +98,7 @@ private extension LaunchViewController {
     func setErrorlState(viewModel: LaunchPresenter.ViewModel) {
         titleView.isHidden = true
         errorView.isHidden = false
-        configureBlurEffect()
+        
         errorView.configure(with: viewModel)
     }
 }
