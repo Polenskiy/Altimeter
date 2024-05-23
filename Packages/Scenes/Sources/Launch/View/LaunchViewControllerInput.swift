@@ -5,4 +5,6 @@
 //	Where my children
 //
 
-protocol LaunchViewControllerInput: BaseViewControllerInput { }
+protocol LaunchViewControllerInput: BaseViewControllerInput {
+    func update(with state: LaunchPresenter.State)
+}
