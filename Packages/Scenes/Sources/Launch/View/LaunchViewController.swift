@@ -64,9 +64,10 @@ private extension LaunchViewController {
     func configureImageView() {
         view.addSubview(imageView)
         NSLayoutConstraint.activate([
-            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
-            imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 28),
+            imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -28),
+            imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
     
