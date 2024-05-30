@@ -12,8 +12,8 @@
 		A59425602BF4FE3100143602 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = A594255F2BF4FE3100143602 /* Base */; };
 		A59425622BF4FE3200143602 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A59425612BF4FE3200143602 /* Assets.xcassets */; };
 		A59425652BF4FE3200143602 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = A59425642BF4FE3200143602 /* Base */; };
-		A83AC5482C08578E00193B74 /* Services in Frameworks */ = {isa = PBXBuildFile; productRef = A83AC5472C08578E00193B74 /* Services */; };
 		A87B875D2BF6127B006F17A8 /* DI in Resources */ = {isa = PBXBuildFile; fileRef = A87B875C2BF6127B006F17A8 /* DI */; };
+		A8EB3B462C088DFE00F90B1D /* Services in Frameworks */ = {isa = PBXBuildFile; productRef = A8EB3B452C088DFE00F90B1D /* Services */; };
 		A8EDE69B2BF643240086B87A /* Scenes in Resources */ = {isa = PBXBuildFile; fileRef = A8EDE69A2BF643240086B87A /* Scenes */; };
 		A8EDE69F2BF6447A0086B87A /* Scenes in Frameworks */ = {isa = PBXBuildFile; productRef = A8EDE69E2BF6447A0086B87A /* Scenes */; };
 /* End PBXBuildFile section */
@@ -36,7 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A83AC5482C08578E00193B74 /* Services in Frameworks */,
+				A8EB3B462C088DFE00F90B1D /* Services in Frameworks */,
 				A8EDE69F2BF6447A0086B87A /* Scenes in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -102,7 +102,7 @@
 			name = Altimeter;
 			packageProductDependencies = (
 				A8EDE69E2BF6447A0086B87A /* Scenes */,
-				A83AC5472C08578E00193B74 /* Services */,
+				A8EB3B452C088DFE00F90B1D /* Services */,
 			);
 			productName = Altimeter;
 			productReference = A59425552BF4FE3100143602 /* Altimeter.app */;
@@ -134,7 +134,7 @@
 			mainGroup = A594254C2BF4FE3100143602;
 			packageReferences = (
 				A8EDE69D2BF6447A0086B87A /* XCLocalSwiftPackageReference "Packages/Scenes" */,
-				A83AC5462C08578E00193B74 /* XCLocalSwiftPackageReference "Packages/Services" */,
+				A8EB3B442C088DFE00F90B1D /* XCLocalSwiftPackageReference "Packages/Services" */,
 			);
 			productRefGroup = A59425562BF4FE3100143602 /* Products */;
 			projectDirPath = "";
@@ -391,7 +391,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		A83AC5462C08578E00193B74 /* XCLocalSwiftPackageReference "Packages/Services" */ = {
+		A8EB3B442C088DFE00F90B1D /* XCLocalSwiftPackageReference "Packages/Services" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = Packages/Services;
 		};
@@ -402,7 +402,7 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		A83AC5472C08578E00193B74 /* Services */ = {
+		A8EB3B452C088DFE00F90B1D /* Services */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Services;
 		};

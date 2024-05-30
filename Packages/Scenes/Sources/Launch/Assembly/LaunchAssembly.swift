@@ -6,9 +6,11 @@
 //
 
 import DI
+import Services
 
 public final class LaunchAssembly: DependencyFactory {
-    
+    private let services: Services = Services.assembly()
+
     public func module() -> LaunchModuleInput {
         return unshared(
             factory: { [unowned self] in
@@ -51,7 +53,10 @@ public final class LaunchAssembly: DependencyFactory {
     private func interactor() -> LaunchInteractor {
         return unshared(
             factory: {
-                return LaunchInteractor()
+                return LaunchInteractor(
+                    geoPermissionManager: services.geoPermissionManager(),
+                    networkMonitor: services.networkMonitor()
+                )
             }
         )
     }

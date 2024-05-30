@@ -5,4 +5,6 @@
 //	Where my children
 //
 
-protocol LaunchInteractorOutput: AnyObject { }
+protocol LaunchInteractorOutput: AnyObject { 
+    func updateState(_ state: LaunchPresenter.State)
+}
