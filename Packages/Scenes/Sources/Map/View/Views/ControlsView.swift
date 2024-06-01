@@ -19,7 +19,18 @@ extension ControlsView {
         case position(Completion)
         
         var imageName: String {
-            return "compassIcon"
+            switch self {
+            case .compass:
+                return "compassIcon"
+            case .share:
+                return "shareIcon"
+            case .layers:
+                return "layersIcon"
+            case .menu:
+                return "menuIcon"
+            case .position:
+                return "positionIcon"
+            }
         }
         
         var handler: Completion {
@@ -78,7 +89,7 @@ private extension ControlsView {
         addSubview(control)
         NSLayoutConstraint.activate([
             control.leadingAnchor.constraint(equalTo: leadingAnchor),
-            control.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 100)
+            control.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -100)
         ])
     }
     
@@ -93,7 +104,7 @@ private extension ControlsView {
         addSubview(control)
         NSLayoutConstraint.activate([
             control.trailingAnchor.constraint(equalTo: trailingAnchor),
-            control.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 100)
+            control.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -100)
         ])
     }
     func setupPosition(control: ControlButton) {
