@@ -9,6 +9,12 @@ import UIKit
 
 final class MapViewController: UIViewController {
     
+    private let controlsView: ControlsView = {
+        let view = ControlsView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     var output: MapViewControllerOutput?
     
     // MARK: - Functions
@@ -23,5 +29,19 @@ final class MapViewController: UIViewController {
 // MARK: - MapViewControllerInput
 extension MapViewController: MapViewControllerInput {
     func setupInitialState() {
-    }    
+        view.addSubview(controlsView)
+        NSLayoutConstraint.activate([
+            controlsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            controlsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            controlsView.topAnchor.constraint(equalTo: view.topAnchor),
+            controlsView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        controlsView.configure(with: [
+            .compass { _ in },
+            .share { _ in },
+            .layers { _ in },
+            .menu { _ in },
+            .position { _ in }
+        ])
+    }
 }
