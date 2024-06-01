@@ -52,9 +52,8 @@ class LaunchPresenter: BasePresenter {
     
     override func didTriggerViewReadyEvent() {
         super.didTriggerViewReadyEvent()
+        interactor.didTriggerViewReadyEvent()
         view.setupInitialState()
-        
-        view.update(with: .error(.noInternet))
     }
 }
 
@@ -66,7 +65,11 @@ extension LaunchPresenter: LaunchModuleInput {
 }
 
 // MARK: - LaunchInteractorOutput
-extension LaunchPresenter: LaunchInteractorOutput { }
+extension LaunchPresenter: LaunchInteractorOutput {
+    func updateState(_ state: State) {
+        view.update(with: state)
+    }
+}
 
 // MARK: - LaunchViewControllerOutput
 extension LaunchPresenter: LaunchViewControllerOutput { }

@@ -5,4 +5,6 @@
 //	Where my children
 //
 
-protocol LaunchInteractorInput: AnyObject { }
+protocol LaunchInteractorInput: AnyObject {
+    func didTriggerViewReadyEvent()
+}
