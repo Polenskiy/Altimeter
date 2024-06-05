@@ -16,5 +16,5 @@ final class MapRouter {
 
 // MARK: - MapRouterInput
 extension MapRouter: MapRouterInput {
-    
+    func showCompass() { }
 }

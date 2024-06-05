@@ -36,4 +36,8 @@ extension MapPresenter: MapModuleInput {
 extension MapPresenter: MapInteractorOutput { }
 
 // MARK: - MapViewControllerOutput
-extension MapPresenter: MapViewControllerOutput { }
+extension MapPresenter: MapViewControllerOutput {
+    func onCompassControl() {
+        router.showCompass()
+    }
+}

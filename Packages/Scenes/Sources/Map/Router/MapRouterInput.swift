@@ -5,4 +5,6 @@
 //	Where my children
 //
 
-protocol MapRouterInput: AnyObject { }
+protocol MapRouterInput: AnyObject { 
+    func showCompass()
+}
