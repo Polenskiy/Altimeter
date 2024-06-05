@@ -3,4 +3,7 @@
 //	Where my children
 //
 
-protocol MapViewControllerOutput: BaseViewControllerOutput { }
+protocol MapViewControllerOutput: BaseViewControllerOutput { 
+    
+    func onCompassControl()
+}
