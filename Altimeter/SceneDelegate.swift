@@ -12,14 +12,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else {
             return
         }
-        let launchAssembly: LaunchAssembly = LaunchAssembly.assembly()
-        let launchViewController = launchAssembly.module().viewController
-        let navigationController = UINavigationController(rootViewController: launchViewController)
+//        let launchAssembly: LaunchAssembly = LaunchAssembly.assembly()
+//        let launchViewController = launchAssembly.module().viewController
+        let mapAssembly: MapAssembly = MapAssembly.assembly()
+        let mapViewController = mapAssembly.module().viewController
+        
+        let navigationController = UINavigationController(rootViewController: mapViewController)
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()

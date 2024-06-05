@@ -5,4 +5,4 @@
 //	Where my children
 //
 
-protocol MapModuleInput: BaseModuleInput { }
+public protocol MapModuleInput: BaseModuleInput { }

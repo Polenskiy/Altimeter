@@ -9,7 +9,7 @@ import DI
 
 public final class MapAssembly: DependencyFactory {
     
-    func module() -> MapModuleInput {
+    public func module() -> MapModuleInput {
         return unshared(
             factory: { [unowned self] in
                 let presenter = self.presenter()
