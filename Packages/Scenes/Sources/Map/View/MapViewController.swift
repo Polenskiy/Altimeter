@@ -33,11 +33,13 @@ extension MapViewController: MapViewControllerInput {
         NSLayoutConstraint.activate([
             controlsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             controlsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            controlsView.topAnchor.constraint(equalTo: view.topAnchor),
+            controlsView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
             controlsView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         controlsView.configure(with: [
-            .compass { _ in },
+            .compass { [weak self] _ in
+                self?.output?.onCompassControl()
+            },
             .share { _ in },
             .layers { _ in },
             .menu { _ in },

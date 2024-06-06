@@ -1,17 +1,14 @@
 //
 //
 //
-//  MapAssembly.swift
+//  CompassAssembly.swift
 //	Where my children
 //
-
 import DI
 
-public final class MapAssembly: DependencyFactory {
+public final class CompassAssembly: DependencyFactory {
     
-    private let compassAssembly: CompassAssembly = CompassAssembly.assembly()
-    
-    public func module() -> MapModuleInput {
+   public func module() -> CompassModuleInput {
         return unshared(
             factory: { [unowned self] in
                 let presenter = self.presenter()
@@ -34,34 +31,34 @@ public final class MapAssembly: DependencyFactory {
         )
     }
     
-    private func router() -> MapRouter {
+    private func router() -> CompassRouter {
         unshared(
             factory: {
-                MapRouter(compassAssembly: compassAssembly)
+                CompassRouter()
             }
         )
     }
     
-    private func view() -> MapViewController {
+    private func view() -> CompassViewController {
         unshared(
             factory: {
-                MapViewController()
+                CompassViewController()
             }
         )
     }
     
-    private func interactor() -> MapInteractor {
+    private func interactor() -> CompassInteractor {
         unshared(
             factory: {
-                MapInteractor()
+                CompassInteractor()
             }
         )
     }
     
-    private func presenter() -> MapPresenter {
+    private func presenter() -> CompassPresenter {
         unshared(
             factory: {
-                MapPresenter()
+                CompassPresenter()
             }
         )
     }
