@@ -8,6 +8,8 @@ import DI
 
 public final class CompassAssembly: DependencyFactory {
     
+//    private let mapAssembly: MapAssembly = MapAssembly.assembly()
+    
    public func module() -> CompassModuleInput {
         return unshared(
             factory: { [unowned self] in
@@ -34,7 +36,7 @@ public final class CompassAssembly: DependencyFactory {
     private func router() -> CompassRouter {
         unshared(
             factory: {
-                CompassRouter()
+                return CompassRouter()
             }
         )
     }

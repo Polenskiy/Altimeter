@@ -16,5 +16,7 @@ final class CompassRouter {
 
 // MARK: - CompassRouterInput
 extension CompassRouter: CompassRouterInput {
-    
+    func showMap() {
+        view.navigationController?.popViewController(animated: true)
+    }
 }
