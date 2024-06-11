@@ -4,5 +4,8 @@
 //  CompassViewControllerInput.swift
 //	Where my children
 //
+import UIKit
 
-protocol CompassViewControllerInput: BaseViewControllerInput { }
+protocol CompassViewControllerInput: BaseViewControllerInput {
+    func update(heading: CGFloat)
+}

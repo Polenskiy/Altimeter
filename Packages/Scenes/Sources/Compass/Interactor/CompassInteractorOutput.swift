@@ -5,4 +5,8 @@
 //	Where my children
 //
 
-protocol CompassInteractorOutput: AnyObject { }
+import CoreLocation
+
+protocol CompassInteractorOutput: AnyObject {
+    func update(heading: CLHeading)
+}

@@ -35,6 +35,10 @@ final class CompassViewController: UIViewController {
 
 // MARK: - CompassViewControllerInput
 extension CompassViewController: CompassViewControllerInput {
+    func update(heading: CGFloat) {
+        compassView.heading = heading
+    }
+    
     func setupInitialState() {
         view.backgroundColor = UIColor(named: "darkBlue")
         configureCompassView()

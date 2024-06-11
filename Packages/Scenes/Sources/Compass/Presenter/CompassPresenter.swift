@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 final class CompassPresenter: BasePresenter {
     
@@ -33,7 +34,11 @@ extension CompassPresenter: CompassModuleInput {
 }
 
 // MARK: - CompassInteractorOutput
-extension CompassPresenter: CompassInteractorOutput { }
+extension CompassPresenter: CompassInteractorOutput {
+    func update(heading: CLHeading) {
+        view.update(heading: heading.trueHeading)
+    }
+}
 
 // MARK: - CompassViewControllerOutput
 extension CompassPresenter: CompassViewControllerOutput { 

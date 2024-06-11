@@ -5,9 +5,11 @@
 //	Where my children
 //
 import DI
+import Services
 
 public final class CompassAssembly: DependencyFactory {
     
+    private let locationListener: LocationListenerProtocol = LocationListener()
     
    public func module() -> CompassModuleInput {
         return unshared(
@@ -51,7 +53,7 @@ public final class CompassAssembly: DependencyFactory {
     private func interactor() -> CompassInteractor {
         unshared(
             factory: {
-                CompassInteractor()
+                CompassInteractor(locationListener: locationListener)
             }
         )
     }
