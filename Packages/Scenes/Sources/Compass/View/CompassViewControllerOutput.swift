@@ -5,5 +5,5 @@
 
 protocol CompassViewControllerOutput: BaseViewControllerOutput { 
     
-    func onMapControl()
+    func onBackButton()
 }

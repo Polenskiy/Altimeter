@@ -38,7 +38,7 @@ extension CompassPresenter: CompassInteractorOutput { }
 // MARK: - CompassViewControllerOutput
 extension CompassPresenter: CompassViewControllerOutput { 
     
-    func onMapControl() {
-        router.showMap()
+    func onBackButton() {
+        router.pop()
     }
 }

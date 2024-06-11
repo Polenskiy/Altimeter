@@ -14,7 +14,7 @@ final class CompassViewController: UIViewController {
     let compassView: CompassView = CompassView()
     // MARK: - Functions
     
-    private let cancelButton: UIButton = {
+    private let backButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "mapIcon"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -56,18 +56,18 @@ private extension CompassViewController {
     }
     
     func configureCancelButton() {
-        view.addSubview(cancelButton)
+        view.addSubview(backButton)
         NSLayoutConstraint.activate([
-            cancelButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            cancelButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 3),
-            cancelButton.heightAnchor.constraint(equalToConstant: 60),
-            cancelButton.widthAnchor.constraint(equalToConstant: 60)
+            backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            backButton.heightAnchor.constraint(equalToConstant: 60),
+            backButton.widthAnchor.constraint(equalToConstant: 60)
         ])
-        cancelButton.addTarget(self, action: #selector(showMapView), for: .touchUpInside)
+        backButton.addTarget(self, action: #selector(backButtonPress), for: .touchUpInside)
     }
     
-    @objc func showMapView() {
-        output?.onMapControl()
+    @objc func backButtonPress() {
+        output?.onBackButton()
     }
     
 }

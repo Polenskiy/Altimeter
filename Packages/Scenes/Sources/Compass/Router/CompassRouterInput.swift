@@ -6,5 +6,5 @@
 //
 
 protocol CompassRouterInput: AnyObject { 
-    func showMap()
+    func pop()
 }
