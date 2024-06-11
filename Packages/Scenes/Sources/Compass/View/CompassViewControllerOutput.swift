@@ -3,4 +3,7 @@
 //	Where my children
 //
 
-protocol CompassViewControllerOutput: BaseViewControllerOutput { }
+protocol CompassViewControllerOutput: BaseViewControllerOutput { 
+    
+    func onBackButton()
+}

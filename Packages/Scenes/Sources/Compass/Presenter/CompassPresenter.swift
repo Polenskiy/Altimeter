@@ -36,4 +36,9 @@ extension CompassPresenter: CompassModuleInput {
 extension CompassPresenter: CompassInteractorOutput { }
 
 // MARK: - CompassViewControllerOutput
-extension CompassPresenter: CompassViewControllerOutput { }
+extension CompassPresenter: CompassViewControllerOutput { 
+    
+    func onBackButton() {
+        router.pop()
+    }
+}

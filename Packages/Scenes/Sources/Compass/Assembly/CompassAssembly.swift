@@ -8,6 +8,7 @@ import DI
 
 public final class CompassAssembly: DependencyFactory {
     
+    
    public func module() -> CompassModuleInput {
         return unshared(
             factory: { [unowned self] in
