@@ -5,4 +5,6 @@
 //	Where my children
 //
 
-protocol LaunchRouterInput: AnyObject { }
+protocol LaunchRouterInput: AnyObject {
+    func showMap()
+}

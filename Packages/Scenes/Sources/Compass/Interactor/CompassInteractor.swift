@@ -20,7 +20,7 @@ final class CompassInteractor {
     }
     
     deinit {
-        
+        locationListener.stopUpdatingHeading()
     }
     // MARK: - Functions
 }
