@@ -40,4 +40,8 @@ extension MapPresenter: MapViewControllerOutput {
     func onCompassControl() {
         router.showCompass()
     }
+    
+    func onShareControl() {
+        router.showShare()
+    }
 }
