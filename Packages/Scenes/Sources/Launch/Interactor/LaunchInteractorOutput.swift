@@ -7,4 +7,5 @@
 
 protocol LaunchInteractorOutput: AnyObject { 
     func updateState(_ state: LaunchPresenter.State)
+    func finish()
 }

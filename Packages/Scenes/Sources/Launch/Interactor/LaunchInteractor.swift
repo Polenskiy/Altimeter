@@ -51,10 +51,13 @@ extension LaunchInteractor: LaunchInteractorInput {
 private extension LaunchInteractor {
     func startWithDelay() {
         updateState()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
             self?.requestGeoPermissionIfNeeded()
             self?.handleGeoAuthorization()
             self?.checkInternetConnecion()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+                self?.output?.finish()
+            }
         }
     }
     

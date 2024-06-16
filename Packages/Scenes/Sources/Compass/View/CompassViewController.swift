@@ -35,6 +35,10 @@ final class CompassViewController: UIViewController {
 
 // MARK: - CompassViewControllerInput
 extension CompassViewController: CompassViewControllerInput {
+    func update(heading: CGFloat) {
+        compassView.heading = heading
+    }
+    
     func setupInitialState() {
         view.backgroundColor = UIColor(named: "darkBlue")
         configureCompassView()
@@ -48,8 +52,8 @@ private extension CompassViewController {
         view.addSubview(compassView)
         compassView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            compassView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
-            compassView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
+            compassView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            compassView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             compassView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             compassView.heightAnchor.constraint(equalToConstant: view.frame.width - 32)
         ])
