@@ -9,6 +9,12 @@ import UIKit
 
 final class MapViewController: UIViewController {
     
+    private let mapView: MapView = {
+        let view = MapView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     private let controlsView: ControlsView = {
         let view = ControlsView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -22,6 +28,7 @@ final class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         output?.didTriggerViewReadyEvent()
+        confugureMapView()
     }
     
 }
@@ -29,12 +36,12 @@ final class MapViewController: UIViewController {
 // MARK: - MapViewControllerInput
 extension MapViewController: MapViewControllerInput {
     func setupInitialState() {
-        view.addSubview(controlsView)
+        mapView.addSubview(controlsView)
         NSLayoutConstraint.activate([
-            controlsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            controlsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            controlsView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
-            controlsView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            controlsView.leadingAnchor.constraint(equalTo: mapView.leadingAnchor),
+            controlsView.trailingAnchor.constraint(equalTo: mapView.trailingAnchor),
+            controlsView.topAnchor.constraint(equalTo: mapView.safeAreaLayoutGuide.topAnchor, constant: 32),
+            controlsView.bottomAnchor.constraint(equalTo: mapView.bottomAnchor)
         ])
         controlsView.configure(with: [
             .compass { [weak self] _ in
@@ -45,5 +52,16 @@ extension MapViewController: MapViewControllerInput {
             .menu { _ in },
             .position { _ in }
         ])
+    }
+    
+    func confugureMapView() {
+        view.addSubview(mapView)
+            
+            NSLayoutConstraint.activate([
+                mapView.topAnchor.constraint(equalTo: view.topAnchor),
+                mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            ])
     }
 }
