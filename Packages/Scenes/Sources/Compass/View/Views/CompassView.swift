@@ -9,7 +9,7 @@ import UIKit
 
 final class CompassView: UIView {
     
-     var heading: CGFloat = 0 {
+     var heading: CGFloat = 78 {
         didSet {
             setNeedsDisplay()
         }
@@ -32,7 +32,7 @@ final class CompassView: UIView {
         guard let context = UIGraphicsGetCurrentContext() else { return }
         
         let center = CGPoint(x: rect.midX, y: rect.midY)
-        let radius = min(rect.width, rect.height) / 2 - 10 
+        let radius = min(rect.width, rect.height) / 2 - 20
         let headingRadians = heading * .pi / 180
         
         drawCenterLines(context: context, radius: radius, center: center)
@@ -42,6 +42,8 @@ final class CompassView: UIView {
         drawDegreeNumbers(context: context, center: center, radius: radius, headingRadians: headingRadians)
         
         drawCompassDirections(context: context, center: center, radius: radius, headingRadians: headingRadians)
+        
+        drawDirectionTriangle(context: context, radius: radius, center: center, headingRadians: headingRadians)
     }
 }
 
@@ -63,6 +65,37 @@ private extension CompassView {
         context.move(to: start)
         context.addLine(to: end)
         context.strokePath()
+    }
+    
+    func drawDirectionTriangle(context: CGContext, radius: CGFloat, center: CGPoint, headingRadians: CGFloat) {
+        context.saveGState()
+        context.setFillColor(UIColor.red.cgColor)
+        
+//        let triangleHeight: CGFloat = 100
+//        let triangleWidth: CGFloat = 200
+        
+        let topPoint = CGPoint(
+                   x: center.x,
+                   y: center.y - radius
+               )
+               
+        let leftPoint = CGPoint(
+            x: center.x - 8,
+            y: center.y - radius + 12
+        )
+               
+        let rightPoint = CGPoint(
+            x: center.x + 8,
+            y: center.y - radius + 12
+        )
+            
+        context.beginPath()
+        context.move(to: topPoint)
+        context.addLine(to: leftPoint)
+        context.addLine(to: rightPoint)
+        context.closePath()
+        context.fillPath()
+        context.restoreGState()
     }
     
     func drawCenterLines(context: CGContext, radius: CGFloat, center: CGPoint) {
@@ -95,7 +128,7 @@ private extension CompassView {
     }
     
     func drawCompassDirections(context: CGContext, center: CGPoint, radius: CGFloat, headingRadians: CGFloat) {
-        let directionRadius = radius - 55
+        let directionRadius = radius - 57
         let directions = ["N", "E", "S", "W"]
         let attributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 24),

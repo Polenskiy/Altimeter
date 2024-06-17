@@ -4,15 +4,17 @@
 //  CompassViewController.swift
 //	Where my children
 //
-
+import CoreLocation
 import UIKit
 
-final class CompassViewController: UIViewController {
+final class CompassViewController: UIViewController, CLLocationManagerDelegate  {
     
     var output: CompassViewControllerOutput?
     
     let compassView: CompassView = CompassView()
     // MARK: - Functions
+    
+    private let locationManager = CLLocationManager()
     
     private let backButton: UIButton = {
         let button = UIButton()
@@ -21,14 +23,56 @@ final class CompassViewController: UIViewController {
         return button
     }()
     
+
+    
+    private let coordinatsAndAddresView: CoordinatesAndAddressView = {
+       let view = CoordinatesAndAddressView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    
+    private let headingLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 50)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private func setupLocationManager() {
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         output?.didTriggerViewReadyEvent()
+        setupLocationManager()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+            guard let location = locations.last else { return }
+            updateCoordinatesAndAddress(location: location)
+        }
+
+    private func updateCoordinatesAndAddress(location: CLLocation) {
+        let geocoder = CLGeocoder()
+        
+        geocoder.reverseGeocodeLocation(location) { [weak self] (placemarks, error) in
+            guard let self = self, let placemark = placemarks?.first, error == nil else { return }
+            let address = [placemark.thoroughfare, placemark.locality, placemark.country].compactMap { $0 }.joined(separator: ", ")
+            DispatchQueue.main.async {
+                self.coordinatsAndAddresView.updateCoordinates("\(location.coordinate.latitude), \(location.coordinate.longitude)")
+                self.coordinatsAndAddresView.updateAddress(address)
+            }
+        }
     }
     
 }
@@ -39,6 +83,8 @@ extension CompassViewController: CompassViewControllerInput {
         view.backgroundColor = UIColor(named: "darkBlue")
         configureCompassView()
         configureCancelButton()
+        configureTitleView()
+        configureHeadingLabel()
     }
 }
 
@@ -51,7 +97,7 @@ private extension CompassViewController {
             compassView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
             compassView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
             compassView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            compassView.heightAnchor.constraint(equalToConstant: view.frame.width - 32)
+            compassView.heightAnchor.constraint(equalToConstant: view.frame.width)
         ])
     }
     
@@ -64,6 +110,32 @@ private extension CompassViewController {
             backButton.widthAnchor.constraint(equalToConstant: 60)
         ])
         backButton.addTarget(self, action: #selector(backButtonPress), for: .touchUpInside)
+    }
+    
+    func configureTitleView() {
+        view.addSubview(coordinatsAndAddresView)
+        NSLayoutConstraint.activate([
+            coordinatsAndAddresView.topAnchor.constraint(equalTo: compassView.bottomAnchor, constant: 5),
+            coordinatsAndAddresView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100),
+            coordinatsAndAddresView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            coordinatsAndAddresView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            coordinatsAndAddresView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
+        ])
+    }
+    
+    func configureHeadingLabel() {
+        view.addSubview(headingLabel)
+        NSLayoutConstraint.activate([
+            headingLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            headingLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 150)
+        ])
+        updateHeadingLabel()
+    }
+    
+    func updateHeadingLabel() {
+        let headingDegrees = Int(compassView.heading)
+        headingLabel.text = "\(headingDegrees)°"
+
     }
     
     @objc func backButtonPress() {
