@@ -6,11 +6,13 @@
 //
 import CoreLocation
 import UIKit
+import Services
 
-final class CompassViewController: UIViewController, CLLocationManagerDelegate  {
+final class CompassViewController: UIViewController  {
     
     var output: CompassViewControllerOutput?
     
+    let locationListener: LocationListenerProtocol = LocationListener()
     let compassView: CompassView = CompassView()
     // MARK: - Functions
     
@@ -40,31 +42,19 @@ final class CompassViewController: UIViewController, CLLocationManagerDelegate  
         return label
     }()
     
-    private func setupLocationManager() {
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         output?.didTriggerViewReadyEvent()
-        setupLocationManager()
+        setupLocationListener()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-            guard let location = locations.last else { return }
-            updateCoordinatesAndAddress(location: location)
-        }
 
     private func updateCoordinatesAndAddress(location: CLLocation) {
         let geocoder = CLGeocoder()
-        
         geocoder.reverseGeocodeLocation(location) { [weak self] (placemarks, error) in
             guard let self = self, let placemark = placemarks?.first, error == nil else { return }
             let address = [placemark.thoroughfare, placemark.locality, placemark.country].compactMap { $0 }.joined(separator: ", ")
@@ -72,6 +62,13 @@ final class CompassViewController: UIViewController, CLLocationManagerDelegate  
                 self.coordinatsAndAddresView.updateCoordinates("\(location.coordinate.latitude), \(location.coordinate.longitude)")
                 self.coordinatsAndAddresView.updateAddress(address)
             }
+        }
+    }
+    
+    private func setupLocationListener() {
+        locationListener.startUpdatingLocation { location in
+            guard let location = location else { return }
+            self.updateCoordinatesAndAddress(location: location)
         }
     }
     
