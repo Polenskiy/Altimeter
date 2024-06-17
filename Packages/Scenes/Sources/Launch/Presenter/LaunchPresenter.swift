@@ -69,6 +69,10 @@ extension LaunchPresenter: LaunchInteractorOutput {
     func updateState(_ state: State) {
         view.update(with: state)
     }
+    
+    func finish() {
+        router.showMap()
+    }
 }
 
 // MARK: - LaunchViewControllerOutput

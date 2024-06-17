@@ -10,7 +10,8 @@ import Services
 
 public final class LaunchAssembly: DependencyFactory {
     private let services: Services = Services.assembly()
-
+    private let mapAssembly: MapAssembly = MapAssembly.assembly()
+    
     public func module() -> LaunchModuleInput {
         return unshared(
             factory: { [unowned self] in
@@ -37,7 +38,7 @@ public final class LaunchAssembly: DependencyFactory {
     private func router() -> LaunchRouter {
         return unshared(
             factory: {
-                return LaunchRouter()
+                return LaunchRouter(mapAssembly: mapAssembly)
             }
         )
     }

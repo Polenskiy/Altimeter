@@ -50,6 +50,16 @@ final class ControlsView: UIView {
     func configure(with types: [ControlType]) {
         types.forEach { configure(with: $0) }
     }
+    
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        for subview in subviews {
+            let convertedPoint = subview.convert(point, from: self)
+            if let view = subview.hitTest(convertedPoint, with: event) {
+                return view
+            }
+        }
+        return nil
+    }
 }
 
 private extension ControlsView {

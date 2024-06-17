@@ -16,12 +16,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else {
             return
         }
-//        let launchAssembly: LaunchAssembly = LaunchAssembly.assembly()
-//        let launchViewController = launchAssembly.module().viewController
-        let mapAssembly: MapAssembly = MapAssembly.assembly()
-        let mapViewController = mapAssembly.module().viewController
+        let launchAssembly: LaunchAssembly = LaunchAssembly.assembly()
+        let launchViewController = launchAssembly.module().viewController
         
-        let navigationController = UINavigationController(rootViewController: mapViewController)
+        let navigationController = UINavigationController(rootViewController: launchViewController)
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
