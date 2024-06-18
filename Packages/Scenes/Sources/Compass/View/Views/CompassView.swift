@@ -9,7 +9,7 @@ import UIKit
 
 final class CompassView: UIView {
     
-     var heading: CGFloat = 78 {
+     var heading: CGFloat = 0 {
         didSet {
             setNeedsDisplay()
         }
@@ -71,8 +71,6 @@ private extension CompassView {
         context.saveGState()
         context.setFillColor(UIColor.red.cgColor)
         
-//        let triangleHeight: CGFloat = 100
-//        let triangleWidth: CGFloat = 200
         
         let topPoint = CGPoint(
                    x: center.x,

@@ -17,6 +17,11 @@ final class CompassInteractor {
         locationListener.startUpdatingHeading { heading in
             self.output?.update(heading: heading)
         }
+        
+        locationListener.startUpdatingLocation { location in
+            guard let location = location else { return }
+            self.output?.updateCoordinatesAndAddress(location: location)
+        }
     }
     
     deinit {

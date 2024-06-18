@@ -35,6 +35,16 @@ extension CompassPresenter: CompassModuleInput {
 
 // MARK: - CompassInteractorOutput
 extension CompassPresenter: CompassInteractorOutput {
+    func updateCoordinatesAndAddress(location: CLLocation) {
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(location) { [weak self] (placemarks, error) in
+            guard let self = self, let placemark = placemarks?.first, error == nil else { return }
+            let address = [placemark.thoroughfare, placemark.locality, placemark.country].compactMap { $0 }.joined(separator: ", ")
+            view.updateCoordinates(with: "\(location.coordinate.latitude), \(location.coordinate.longitude)")
+            view.updateAddress(with: address)
+        }
+    }
+    
     func update(heading: CLHeading) {
         view.update(heading: heading.trueHeading)
     }

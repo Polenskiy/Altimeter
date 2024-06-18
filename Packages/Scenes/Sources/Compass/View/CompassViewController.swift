@@ -4,19 +4,13 @@
 //  CompassViewController.swift
 //	Where my children
 //
-import CoreLocation
 import UIKit
-import Services
 
 final class CompassViewController: UIViewController  {
     
     var output: CompassViewControllerOutput?
-    
-    let locationListener: LocationListenerProtocol = LocationListener()
     let compassView: CompassView = CompassView()
     // MARK: - Functions
-    
-    private let locationManager = CLLocationManager()
     
     private let backButton: UIButton = {
         let button = UIButton()
@@ -25,14 +19,11 @@ final class CompassViewController: UIViewController  {
         return button
     }()
     
-
-    
     private let coordinatsAndAddresView: CoordinatesAndAddressView = {
        let view = CoordinatesAndAddressView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
     
     private let headingLabel: UILabel = {
         let label = UILabel()
@@ -45,39 +36,26 @@ final class CompassViewController: UIViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         output?.didTriggerViewReadyEvent()
-        setupLocationListener()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
-
-    private func updateCoordinatesAndAddress(location: CLLocation) {
-        let geocoder = CLGeocoder()
-        geocoder.reverseGeocodeLocation(location) { [weak self] (placemarks, error) in
-            guard let self = self, let placemark = placemarks?.first, error == nil else { return }
-            let address = [placemark.thoroughfare, placemark.locality, placemark.country].compactMap { $0 }.joined(separator: ", ")
-            DispatchQueue.main.async {
-                self.coordinatsAndAddresView.updateCoordinates("\(location.coordinate.latitude), \(location.coordinate.longitude)")
-                self.coordinatsAndAddresView.updateAddress(address)
-            }
-        }
-    }
-    
-    private func setupLocationListener() {
-        locationListener.startUpdatingLocation { location in
-            guard let location = location else { return }
-            self.updateCoordinatesAndAddress(location: location)
-        }
-    }
-    
 }
 
 // MARK: - CompassViewControllerInput
 extension CompassViewController: CompassViewControllerInput {
     func update(heading: CGFloat) {
         compassView.heading = heading
+    }
+    
+    func updateCoordinates(with coordinates: String) {
+        self.coordinatsAndAddresView.updateCoordinates("\(coordinates)")
+    }
+    
+    func updateAddress(with address: String) {
+        self.coordinatsAndAddresView.updateAddress("\(address)")
     }
     
     func setupInitialState() {
