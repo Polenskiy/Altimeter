@@ -15,13 +15,15 @@ final class CompassInteractor {
     init(locationListener: LocationListenerProtocol) {
         self.locationListener = locationListener
         locationListener.startUpdatingHeading { heading in
-            self.output?.update(heading: heading)
+            self.output?.didUpdate(heading: heading)
         }
         
         locationListener.startUpdatingLocation { location in
             guard let location = location else { return }
-            self.output?.updateCoordinatesAndAddress(location: location)
+            self.output?.didUpdate(location: location)
         }
+        
+        
     }
     
     deinit {
@@ -32,6 +34,5 @@ final class CompassInteractor {
 
 // MARK: - CompassInteractorInput
 extension CompassInteractor: CompassInteractorInput { 
-    
-    
+
 }

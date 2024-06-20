@@ -6,6 +6,15 @@
 //
 import UIKit
 
+extension CompassViewController {
+    
+    struct AddressViewModel {
+        let latitude: String
+        let longitude: String
+        let address: String
+    }
+}
+
 final class CompassViewController: UIViewController  {
     
     var output: CompassViewControllerOutput?
@@ -48,14 +57,12 @@ final class CompassViewController: UIViewController  {
 extension CompassViewController: CompassViewControllerInput {
     func update(heading: CGFloat) {
         compassView.heading = heading
+        headingLabel.text = "\(heading)"
     }
     
-    func updateCoordinates(with coordinates: String) {
-        self.coordinatsAndAddresView.updateCoordinates("\(coordinates)")
-    }
-    
-    func updateAddress(with address: String) {
-        self.coordinatsAndAddresView.updateAddress("\(address)")
+    func updateLocation(with viewModel: AddressViewModel) {
+        coordinatsAndAddresView.updateAddress(viewModel.address)
+        coordinatsAndAddresView.updateCoordinates("\(viewModel.latitude) \(viewModel.longitude)")
     }
     
     func setupInitialState() {
@@ -96,7 +103,6 @@ private extension CompassViewController {
         NSLayoutConstraint.activate([
             coordinatsAndAddresView.topAnchor.constraint(equalTo: compassView.bottomAnchor, constant: 5),
             coordinatsAndAddresView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100),
-            coordinatsAndAddresView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             coordinatsAndAddresView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             coordinatsAndAddresView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
         ])
@@ -108,13 +114,6 @@ private extension CompassViewController {
             headingLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             headingLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 150)
         ])
-        updateHeadingLabel()
-    }
-    
-    func updateHeadingLabel() {
-        let headingDegrees = Int(compassView.heading)
-        headingLabel.text = "\(headingDegrees)°"
-
     }
     
     @objc func backButtonPress() {

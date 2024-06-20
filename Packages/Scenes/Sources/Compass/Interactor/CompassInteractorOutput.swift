@@ -8,6 +8,6 @@
 import CoreLocation
 
 protocol CompassInteractorOutput: AnyObject {
-    func update(heading: CLHeading)
-    func updateCoordinatesAndAddress(location: CLLocation)
+    func didUpdate(heading: CLHeading)
+    func didUpdate(location: CLLocation)
 }

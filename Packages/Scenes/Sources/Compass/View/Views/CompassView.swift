@@ -71,7 +71,6 @@ private extension CompassView {
         context.saveGState()
         context.setFillColor(UIColor.red.cgColor)
         
-        
         let topPoint = CGPoint(
                    x: center.x,
                    y: center.y - radius
