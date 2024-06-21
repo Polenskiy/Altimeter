@@ -5,12 +5,15 @@
 //	Where my children
 //
 import Services
+import CoreLocation
 
 final class CompassInteractor {
     
     weak var output: CompassInteractorOutput?
     
     private let locationListener: LocationListenerProtocol
+    private var previousLocation: CLLocation?
+    private let minimumDistance: CLLocationDistance = 50
     
     init(locationListener: LocationListenerProtocol) {
         self.locationListener = locationListener
@@ -20,18 +23,27 @@ final class CompassInteractor {
         
         locationListener.startUpdatingLocation { location in
             guard let location = location else { return }
-            self.output?.didUpdate(location: location)
+            self.handleLocationUpdate(with: location)
         }
-        
         
     }
     
-    deinit {
-        locationListener.stopUpdatingHeading()
+    private func handleLocationUpdate(with location: CLLocation) {
+        
+        guard let previousLocation = previousLocation else {
+            self.previousLocation = location
+            output?.didUpdate(location: location)
+            return
+        }
+        
+        let distance = location.distance(from: previousLocation)
+        
+        if distance > minimumDistance {
+            self.previousLocation = location
+            self.output?.didUpdate(location: location)
+        }
     }
-    // MARK: - Functions
 }
-
 // MARK: - CompassInteractorInput
 extension CompassInteractor: CompassInteractorInput { 
 

@@ -13,8 +13,10 @@ final class LocationContainerView: UIView {
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.alignment = .center
-        stack.spacing = 8
+        stack.spacing = 50
+        stack.layoutMargins = UIEdgeInsets(top: 24, left: 24, bottom: 24, right: 24)
         stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.isLayoutMarginsRelativeArrangement = true
         return stack
     }()
     
@@ -40,8 +42,8 @@ extension LocationContainerView {
     
     func setup() {
         configureHorizontalStackView()
-        configureAddressView()
-        configureCoordinatesView()
+        horizontalStackView.addArrangedSubview(coordinatesView)
+        horizontalStackView.addArrangedSubview(addressView)
     }
     
     func configureHorizontalStackView() {
@@ -51,24 +53,6 @@ extension LocationContainerView {
             horizontalStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
             horizontalStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
             horizontalStackView.trailingAnchor.constraint(equalTo: trailingAnchor)
-        ])
-    }
-    
-    func configureAddressView() {
-        horizontalStackView.addArrangedSubview(addressView)
-        NSLayoutConstraint.activate([
-            addressView.topAnchor.constraint(equalTo: horizontalStackView.topAnchor, constant: 24),
-            addressView.bottomAnchor.constraint(equalTo: horizontalStackView.bottomAnchor, constant: -24),
-            addressView.leadingAnchor.constraint(equalTo: horizontalStackView.leadingAnchor, constant: 24)
-        ])
-    }
-    
-    func configureCoordinatesView() {
-        horizontalStackView.addArrangedSubview(coordinatesView)
-        NSLayoutConstraint.activate([
-            coordinatesView.topAnchor.constraint(equalTo: horizontalStackView.topAnchor, constant: 24),
-            coordinatesView.bottomAnchor.constraint(equalTo: horizontalStackView.bottomAnchor, constant: -24),
-            coordinatesView.trailingAnchor.constraint(equalTo: horizontalStackView.trailingAnchor, constant: -24)
         ])
     }
 

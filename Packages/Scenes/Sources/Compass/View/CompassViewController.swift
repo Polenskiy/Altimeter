@@ -104,7 +104,7 @@ private extension CompassViewController {
     func configureLocationContainerView() {
         view.addSubview(locationContainerView)
         NSLayoutConstraint.activate([
-            locationContainerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -61),
+            locationContainerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40),
             locationContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             locationContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             locationContainerView.topAnchor.constraint(greaterThanOrEqualTo: compassView.bottomAnchor)
