@@ -28,8 +28,11 @@ final class CompassViewController: UIViewController  {
         return button
     }()
     
-    private let coordinatsAndAddresView: CoordinatesAndAddressView = {
-       let view = CoordinatesAndAddressView()
+    
+    private let locationContainerView: LocationContainerView = {
+        let view = LocationContainerView()
+        view.backgroundColor = UIColor(named: "lightBlue")
+        view.layer.cornerRadius = 32
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -45,6 +48,7 @@ final class CompassViewController: UIViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         output?.didTriggerViewReadyEvent()
+        headingLabel.text = "0"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,16 +65,15 @@ extension CompassViewController: CompassViewControllerInput {
     }
     
     func updateLocation(with viewModel: AddressViewModel) {
-        coordinatsAndAddresView.updateAddress(viewModel.address)
-        coordinatsAndAddresView.updateCoordinates("\(viewModel.latitude) \(viewModel.longitude)")
+        locationContainerView.update(with: viewModel)
     }
     
     func setupInitialState() {
         view.backgroundColor = UIColor(named: "darkBlue")
         configureCompassView()
         configureCancelButton()
-        configureTitleView()
         configureHeadingLabel()
+        configureLocationContainerView()
     }
 }
 
@@ -98,21 +101,22 @@ private extension CompassViewController {
         backButton.addTarget(self, action: #selector(backButtonPress), for: .touchUpInside)
     }
     
-    func configureTitleView() {
-        view.addSubview(coordinatsAndAddresView)
+    func configureLocationContainerView() {
+        view.addSubview(locationContainerView)
         NSLayoutConstraint.activate([
-            coordinatsAndAddresView.topAnchor.constraint(equalTo: compassView.bottomAnchor, constant: 5),
-            coordinatsAndAddresView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100),
-            coordinatsAndAddresView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            coordinatsAndAddresView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
+            locationContainerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -61),
+            locationContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            locationContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            locationContainerView.topAnchor.constraint(greaterThanOrEqualTo: compassView.bottomAnchor)
         ])
+
     }
     
     func configureHeadingLabel() {
         view.addSubview(headingLabel)
         NSLayoutConstraint.activate([
             headingLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            headingLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 150)
+            headingLabel.bottomAnchor.constraint(equalTo: compassView.topAnchor, constant: -30)
         ])
     }
     
