@@ -35,7 +35,21 @@ extension CompassPresenter: CompassModuleInput {
 
 // MARK: - CompassInteractorOutput
 extension CompassPresenter: CompassInteractorOutput {
-    func update(heading: CLHeading) {
+    
+    func didUpdate(location: CLLocation) {
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(location) { [weak self] (placemarks, error) in
+            guard let self = self, let placemark = placemarks?.first, error == nil else { return }
+            let address = [placemark.thoroughfare, placemark.locality, placemark.country].compactMap { $0 }.joined(separator: ", ")
+            view.updateLocation(with: CompassViewController.AddressViewModel(
+                latitude: String(location.coordinate.latitude),
+                longitude: String(location.coordinate.longitude),
+                address: address)
+            )
+        }
+    }
+    
+    func didUpdate(heading: CLHeading) {
         view.update(heading: heading.trueHeading)
     }
 }
