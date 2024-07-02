@@ -18,10 +18,6 @@ final class CompassInteractor {
             self.output?.update(heading: heading)
         }
     }
-    
-    deinit {
-        locationListener.stopUpdatingHeading()
-    }
     // MARK: - Functions
 }
 

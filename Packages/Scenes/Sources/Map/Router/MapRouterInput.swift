@@ -7,4 +7,5 @@
 
 protocol MapRouterInput: AnyObject { 
     func showCompass()
+    func navigateToShareView()
 }

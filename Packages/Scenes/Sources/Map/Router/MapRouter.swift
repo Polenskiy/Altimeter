@@ -13,8 +13,11 @@ final class MapRouter {
     
     private let compassAssembly: CompassAssembly
     
-    init(compassAssembly: CompassAssembly) {
+    private let shareAssembly: ShareAssembly
+    
+    init(compassAssembly: CompassAssembly, shareAssembly: ShareAssembly) {
         self.compassAssembly = compassAssembly
+        self.shareAssembly = shareAssembly
     }
     // MARK: - Functions
 }
@@ -23,6 +26,11 @@ final class MapRouter {
 extension MapRouter: MapRouterInput {
     func showCompass() {
         let viewController = compassAssembly.module().viewController
+        view.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func navigateToShareView() {
+        let viewController = shareAssembly.module().viewController
         view.navigationController?.pushViewController(viewController, animated: true)
     }
 }

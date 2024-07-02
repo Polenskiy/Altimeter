@@ -3,7 +3,7 @@ import DI
 
 public final class ShareAssembly: DependencyFactory {
     
-    func module() -> ShareModuleInput {
+   public func module() -> ShareModuleInput {
         return unshared(
             factory: { [unowned self] in
                 let presenter = self.presenter()

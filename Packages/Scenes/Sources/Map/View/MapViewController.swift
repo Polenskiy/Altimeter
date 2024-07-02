@@ -31,6 +31,15 @@ final class MapViewController: UIViewController {
         confugureMapView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
 }
 
 // MARK: - MapViewControllerInput
@@ -47,7 +56,9 @@ extension MapViewController: MapViewControllerInput {
             .compass { [weak self] _ in
                 self?.output?.onCompassControl()
             },
-            .share { _ in },
+            .share { _ in
+                self.output?.onShareControl()
+            },
             .layers { _ in },
             .menu { _ in },
             .position { _ in }
