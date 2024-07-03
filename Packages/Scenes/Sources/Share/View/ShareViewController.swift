@@ -11,9 +11,10 @@ final class ShareViewController: UIViewController {
     
     private var shareNavigationBar: ShareNavigationBar?
     
-    private let addPhotoButton: ShareButton = {
-        let button = ShareButton(title: "Add Photo", image: nil)
-        return button
+    private let containerButton: ShareContainerButton = {
+        let view = ShareContainerButton()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     private let shareContainerView: ShareContainerView = {
@@ -29,7 +30,7 @@ final class ShareViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         output?.didTriggerViewReadyEvent()
-        configureAddPhotoButton()
+        configureContainerButton()
         configureShareContainerView()
         shareNavigationBar = ShareNavigationBar(viewController: self) { [weak self] in
             print("")
@@ -57,24 +58,24 @@ extension ShareViewController: ShareViewControllerInput {
 }
 
 private extension ShareViewController {
-    func configureAddPhotoButton() {
-        view.addSubview(addPhotoButton)
-        
+    
+    func configureContainerButton() {
+        view.addSubview(containerButton)
         NSLayoutConstraint.activate([
-            addPhotoButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 167),
-            addPhotoButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -557),
-            addPhotoButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 101),
-            addPhotoButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -101)
+            containerButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            containerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            containerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            containerButton.heightAnchor.constraint(equalToConstant: 230)
         ])
     }
     
     func configureShareContainerView() {
         view.addSubview(shareContainerView)
         NSLayoutConstraint.activate([
-            shareContainerView.topAnchor.constraint(equalTo: addPhotoButton.bottomAnchor, constant: 125),
-            shareContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -388),
+            shareContainerView.topAnchor.constraint(equalTo: containerButton.bottomAnchor, constant: 32),
             shareContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             shareContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            shareContainerView.heightAnchor.constraint(equalToConstant: 44),
     
         ])
     }
