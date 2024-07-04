@@ -56,8 +56,8 @@ extension MapViewController: MapViewControllerInput {
             .compass { [weak self] _ in
                 self?.output?.onCompassControl()
             },
-            .share { _ in
-                self.output?.onShareControl()
+            .share { [weak self] _ in
+                self?.output?.onShareControl()
             },
             .layers { _ in },
             .menu { _ in },
