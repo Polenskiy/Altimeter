@@ -5,4 +5,7 @@
 //	Where my children
 //
 
-protocol ShareInteractorInput: AnyObject { }
+protocol ShareInteractorInput: AnyObject { 
+    
+    func didTriggerViewReadyEvent()
+}

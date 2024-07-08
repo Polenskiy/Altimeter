@@ -21,6 +21,7 @@ final class SharePresenter: BasePresenter {
     
     override func didTriggerViewReadyEvent() {
         super.didTriggerViewReadyEvent()
+        interactor.didTriggerViewReadyEvent()
         view.setupInitialState()
     }
 }

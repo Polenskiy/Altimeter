@@ -1,7 +1,10 @@
 
 import DI
+import Services
 
 public final class ShareAssembly: DependencyFactory {
+    
+    private let services: Services = Services.assembly()
     
    public func module() -> ShareModuleInput {
         return unshared(
@@ -45,7 +48,7 @@ public final class ShareAssembly: DependencyFactory {
     private func interactor() -> ShareInteractor {
         unshared(
             factory: {
-                ShareInteractor()
+                ShareInteractor(photoPermissionManager: services.photoPermissionManager())
             }
         )
     }
