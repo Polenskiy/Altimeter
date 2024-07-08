@@ -23,13 +23,6 @@ final class ShareViewController: UIViewController {
         return view
     }()
     
-    private let blurEffect: ShareCustomVisualEffectView = {
-        let blur = UIBlurEffect(style: .light)
-        let blurEffectView = ShareCustomVisualEffectView(effect: blur, intensity: 0.1)
-        blurEffectView.translatesAutoresizingMaskIntoConstraints = false
-        return blurEffectView
-    }()
-    
     var output: ShareViewControllerOutput?
     
     // MARK: - Functions
@@ -40,7 +33,7 @@ final class ShareViewController: UIViewController {
         configureContainerButton()
         configureShareContainerView()
         shareNavigationBar = ShareNavigationBar(viewController: self) { [weak self] in
-            self?.configureBlurEffect()
+            print("")
         }
     }
     
@@ -84,16 +77,6 @@ private extension ShareViewController {
             shareContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             shareContainerView.heightAnchor.constraint(equalToConstant: 44),
     
-        ])
-    }
-    
-    func configureBlurEffect() {
-        view.addSubview(blurEffect)
-        NSLayoutConstraint.activate([
-            blurEffect.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            blurEffect.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            blurEffect.topAnchor.constraint(equalTo: view.topAnchor),
-            blurEffect.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 }
