@@ -8,4 +8,5 @@
 protocol ShareInteractorInput: AnyObject { 
     
     func didTriggerViewReadyEvent()
+    func canOpenCameraRoll() -> Bool
 }

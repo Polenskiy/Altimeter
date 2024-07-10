@@ -1,10 +1,13 @@
 
 import DI
 import Services
+import UIKit
 
 public final class ShareAssembly: DependencyFactory {
     
     private let services: Services = Services.assembly()
+    
+    private let imagePicker = UIImagePickerController()
     
    public func module() -> ShareModuleInput {
         return unshared(
@@ -32,7 +35,7 @@ public final class ShareAssembly: DependencyFactory {
     private func router() -> ShareRouter {
         unshared(
             factory: {
-                ShareRouter()
+                ShareRouter(imagePicker: imagePicker)
             }
         )
     }

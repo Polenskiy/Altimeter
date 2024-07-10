@@ -33,8 +33,9 @@ final class ShareViewController: UIViewController {
         configureContainerButton()
         configureShareContainerView()
         shareNavigationBar = ShareNavigationBar(viewController: self) { [weak self] in
-            print("")
+            self?.output?.addPhotoButtonTapped()
         }
+        containerButton.setAddPhotoButtonTarget(self, action: #selector(addPhotoButtonTapped))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,6 +47,10 @@ final class ShareViewController: UIViewController {
         super.viewWillDisappear(animated)
         shareNavigationBar?.resetAppearence()
         
+    }
+    
+    @objc private func addPhotoButtonTapped() {
+        output?.addPhotoButtonTapped()
     }
     
 }

@@ -34,7 +34,15 @@ extension SharePresenter: ShareModuleInput {
 }
 
 // MARK: - ShareInteractorOutput
-extension SharePresenter: ShareInteractorOutput { }
+extension SharePresenter: ShareInteractorOutput {
+}
 
 // MARK: - ShareViewControllerOutput
-extension SharePresenter: ShareViewControllerOutput { }
+extension SharePresenter: ShareViewControllerOutput { 
+    
+    func addPhotoButtonTapped() {
+        if interactor.canOpenCameraRoll() {
+            router.showPickerView()
+        }
+    }
+}

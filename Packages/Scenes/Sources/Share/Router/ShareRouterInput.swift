@@ -5,4 +5,7 @@
 //	Where my children
 //
 
-protocol ShareRouterInput: AnyObject { }
+protocol ShareRouterInput: AnyObject {
+    
+   func showPickerView()
+}

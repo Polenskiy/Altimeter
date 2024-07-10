@@ -24,6 +24,9 @@ final class ShareContainerButton: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setAddPhotoButtonTarget(_ target: Any?, action: Selector) {
+        addPhotoButton.addTarget(target, action: action, for: .touchUpInside)
+    }
 }
 
 private extension ShareContainerButton {
