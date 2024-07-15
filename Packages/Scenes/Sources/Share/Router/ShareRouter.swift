@@ -9,22 +9,20 @@ import UIKit
 
 final class ShareRouter {
     
-    private let imagePickerController: UIImagePickerController
+    private let imagePickerController: ImagePicker
     
     weak var view: UIViewController!
     
     // MARK: - Functions
-    init(imagePicker: UIImagePickerController) {
+    init(imagePicker: ImagePicker) {
         self.imagePickerController = imagePicker
-        imagePicker.sourceType = .photoLibrary
     }
 }
 
 // MARK: - ShareRouterInput
 extension ShareRouter: ShareRouterInput {
     
-    func showPickerView() {
-        let viewController = imagePickerController
-        view.present(viewController, animated: true)
+    func showImagePicker(completion: ((UIImage) -> ())?) {
+        imagePickerController.showImagePicker(in: view, completion: completion)
     }
 }

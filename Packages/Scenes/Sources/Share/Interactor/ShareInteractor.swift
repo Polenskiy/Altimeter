@@ -21,36 +21,20 @@ final class ShareInteractor {
 
 // MARK: - ShareInteractorInput
 extension ShareInteractor: ShareInteractorInput {
-    func canOpenCameraRoll() -> Bool {
-        start()
-        if photoPermissionManager.hasPermission {
-            return true
-        } else if photoPermissionManager.canRequest {
+    func requestPermission(competion: @escaping (Bool) -> Void) {
+        if photoPermissionManager.canRequest {
             photoPermissionManager.requestAuthorization()
-            return false
-        } else {
-            return false
+            photoPermissionManager.onStatusChanged = { hasPermission in
+                competion(hasPermission)
+            }
         }
+    }
+    
+    func canOpenCameraRoll() -> Bool {
+        photoPermissionManager.hasPermission
     }
     
     func didTriggerViewReadyEvent() {
     }
 }
 
-
-private extension ShareInteractor {
-    func start() {
-        self.requestPhotoPermissionIfNeeded()
-    }
-
-    func requestPhotoPermissionIfNeeded() {
-        if photoPermissionManager.canRequest {
-            photoPermissionManager.requestAuthorization()
-        }
-    }
-    
-    func handlePhotoAuthorization() {
-        photoPermissionManager.startCheckingPermission()
-    }
-    
-}

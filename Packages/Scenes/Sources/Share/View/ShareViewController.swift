@@ -23,6 +23,12 @@ final class ShareViewController: UIViewController {
         return view
     }()
     
+    private let photoLocationContainerView: PhotoLocationContainerView = {
+        let view = PhotoLocationContainerView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     var output: ShareViewControllerOutput?
     
     // MARK: - Functions
@@ -57,6 +63,12 @@ final class ShareViewController: UIViewController {
 
 // MARK: - ShareViewControllerInput
 extension ShareViewController: ShareViewControllerInput {
+    func didChoose(image: UIImage) {
+        containerButton.setButton(isHidden: true)
+        confifurePhotoLocationContainerView()
+        photoLocationContainerView.update(image: image)
+    }
+    
     func setupInitialState() {
         view.backgroundColor = UIColor(named: "darkBlue")
     }
@@ -82,6 +94,17 @@ private extension ShareViewController {
             shareContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             shareContainerView.heightAnchor.constraint(equalToConstant: 44),
     
+        ])
+    }
+    
+    func confifurePhotoLocationContainerView() {
+        containerButton.addSubview(photoLocationContainerView)
+        
+        NSLayoutConstraint.activate([
+            photoLocationContainerView.topAnchor.constraint(equalTo: containerButton.topAnchor),
+            photoLocationContainerView.bottomAnchor.constraint(equalTo: containerButton.bottomAnchor),
+            photoLocationContainerView.leadingAnchor.constraint(equalTo: containerButton.leadingAnchor),
+            photoLocationContainerView.trailingAnchor.constraint(equalTo: containerButton.trailingAnchor)
         ])
     }
 }

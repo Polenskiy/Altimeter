@@ -42,7 +42,17 @@ extension SharePresenter: ShareViewControllerOutput {
     
     func addPhotoButtonTapped() {
         if interactor.canOpenCameraRoll() {
-            router.showPickerView()
+            router.showImagePicker { [weak self] photo in
+                self?.view.didChoose(image: photo)
+            }
+        } else {
+            interactor.requestPermission { [weak self] hasPermission in
+                if hasPermission {
+                    self?.addPhotoButtonTapped()
+                } else {
+                   print("") // TODO: - Показать Alert "Предоставль разрешение"
+                }
+            }
         }
     }
 }

@@ -4,8 +4,8 @@
 //  ShareRouterInput.swift
 //	Where my children
 //
+import UIKit
 
 protocol ShareRouterInput: AnyObject {
-    
-   func showPickerView()
+    func showImagePicker(completion: ((UIImage) -> ())?)
 }

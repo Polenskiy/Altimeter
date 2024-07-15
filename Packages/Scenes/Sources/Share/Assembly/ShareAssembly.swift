@@ -1,13 +1,12 @@
 
 import DI
 import Services
-import UIKit
 
 public final class ShareAssembly: DependencyFactory {
     
     private let services: Services = Services.assembly()
     
-    private let imagePicker = UIImagePickerController()
+    private let imagePicker = ImagePicker()
     
    public func module() -> ShareModuleInput {
         return unshared(

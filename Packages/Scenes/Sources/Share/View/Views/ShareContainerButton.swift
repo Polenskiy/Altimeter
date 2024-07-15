@@ -27,6 +27,10 @@ final class ShareContainerButton: UIView {
     func setAddPhotoButtonTarget(_ target: Any?, action: Selector) {
         addPhotoButton.addTarget(target, action: action, for: .touchUpInside)
     }
+    
+    func setButton(isHidden: Bool) {
+        addPhotoButton.isHidden = isHidden
+    }
 }
 
 private extension ShareContainerButton {
