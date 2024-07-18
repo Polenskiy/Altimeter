@@ -33,6 +33,7 @@ final class PhotoLocationContainerView: UIView {
     private let photoImageView: UIImageView = {
         let image = UIImageView()
         image.layer.cornerRadius = 32
+        image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
         image.translatesAutoresizingMaskIntoConstraints = false
         return image

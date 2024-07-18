@@ -5,7 +5,6 @@
 //	Where my children
 //
 
-import UIKit
 
 final class SharePresenter: BasePresenter {
     
@@ -35,10 +34,14 @@ extension SharePresenter: ShareModuleInput {
 
 // MARK: - ShareInteractorOutput
 extension SharePresenter: ShareInteractorOutput {
+    func authorizationForbidden() {
+        router.needCameraRollPermissionAlert()
+    }
+    
 }
 
 // MARK: - ShareViewControllerOutput
-extension SharePresenter: ShareViewControllerOutput { 
+extension SharePresenter: ShareViewControllerOutput {
     
     func addPhotoButtonTapped() {
         if interactor.canOpenCameraRoll() {
@@ -50,7 +53,8 @@ extension SharePresenter: ShareViewControllerOutput {
                 if hasPermission {
                     self?.addPhotoButtonTapped()
                 } else {
-                   print("") // TODO: - Показать Alert "Предоставль разрешение"
+                    // TODO: - Показать Alert "Предоставль разрешение"
+                    self?.interactor.requestAuthorizationIfForbidden()
                 }
             }
         }

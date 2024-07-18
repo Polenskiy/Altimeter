@@ -11,25 +11,22 @@ import Photos
 public protocol PhotoPermissionManagerProtocol {
     var canRequest: Bool { get }
     var hasPermission: Bool { get }
-    var onStatusChanged: ((Bool) -> Void)? { get set }
+    var permissionStatusChangeHandler: ((Bool) -> Void)? { get set }
     func requestAuthorization()
     func startCheckingPermission()
-    
 }
 
 public final class PhotoPermissionManager: NSObject, PhotoPermissionManagerProtocol {
     
-    //если это свойство true, то запроса еще не проводилось и нужно будет сделать запрос на разрешение
     public var canRequest: Bool {
         PHPhotoLibrary.authorizationStatus() == .notDetermined
     }
-    
-    //Если true, то пользователь дал разрешение на доступ к галерее
+
     public var hasPermission: Bool {
         validStatus.contains( PHPhotoLibrary.authorizationStatus())
     }
     
-    public var onStatusChanged: ((Bool) -> Void)?
+    public var permissionStatusChangeHandler: ((Bool) -> Void)?
     
     private let validStatus: [PHAuthorizationStatus] = [.authorized]
     
@@ -52,7 +49,7 @@ public final class PhotoPermissionManager: NSObject, PhotoPermissionManagerProto
 
 private extension PhotoPermissionManager {
     func checkPermission() {
-        onStatusChanged?(hasPermission)
+        permissionStatusChangeHandler?(hasPermission)
     }
     
     func startObservingEnteringForeground() {

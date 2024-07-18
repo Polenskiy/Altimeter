@@ -8,4 +8,5 @@ import UIKit
 
 protocol ShareRouterInput: AnyObject {
     func showImagePicker(completion: ((UIImage) -> ())?)
+    func needCameraRollPermissionAlert()
 }

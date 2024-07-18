@@ -10,6 +10,7 @@ import UIKit
 final class ShareRouter {
     
     private let imagePickerController: ImagePicker
+    private let shareAlert = SharePermissionAlertBuilder()
     
     weak var view: UIViewController!
     
@@ -21,6 +22,9 @@ final class ShareRouter {
 
 // MARK: - ShareRouterInput
 extension ShareRouter: ShareRouterInput {
+    func needCameraRollPermissionAlert() {
+        view.present(shareAlert.getPermissionAlert(), animated: true)
+    }
     
     func showImagePicker(completion: ((UIImage) -> ())?) {
         imagePickerController.showImagePicker(in: view, completion: completion)
