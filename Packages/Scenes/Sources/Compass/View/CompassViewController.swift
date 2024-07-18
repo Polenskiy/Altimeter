@@ -4,13 +4,20 @@
 //  CompassViewController.swift
 //	Where my children
 //
-
 import UIKit
 
-final class CompassViewController: UIViewController {
+extension CompassViewController {
+    
+    struct AddressViewModel {
+        let latitude: String
+        let longitude: String
+        let address: String
+    }
+}
+
+final class CompassViewController: UIViewController  {
     
     var output: CompassViewControllerOutput?
-    
     let compassView: CompassView = CompassView()
     // MARK: - Functions
     
@@ -21,9 +28,27 @@ final class CompassViewController: UIViewController {
         return button
     }()
     
+    
+    private let locationContainerView: LocationContainerView = {
+        let view = LocationContainerView()
+        view.backgroundColor = UIColor(named: "lightBlue")
+        view.layer.cornerRadius = 32
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private let headingLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 50)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         output?.didTriggerViewReadyEvent()
+        headingLabel.text = "0"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,19 +60,25 @@ final class CompassViewController: UIViewController {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
-    
 }
 
 // MARK: - CompassViewControllerInput
 extension CompassViewController: CompassViewControllerInput {
     func update(heading: CGFloat) {
         compassView.heading = heading
+        headingLabel.text = "\(heading)"
+    }
+    
+    func updateLocation(with viewModel: AddressViewModel) {
+        locationContainerView.update(with: viewModel)
     }
     
     func setupInitialState() {
         view.backgroundColor = UIColor(named: "darkBlue")
         configureCompassView()
         configureCancelButton()
+        configureHeadingLabel()
+        configureLocationContainerView()
     }
 }
 
@@ -60,7 +91,7 @@ private extension CompassViewController {
             compassView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             compassView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             compassView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            compassView.heightAnchor.constraint(equalToConstant: view.frame.width - 32)
+            compassView.heightAnchor.constraint(equalToConstant: view.frame.width)
         ])
     }
     
@@ -73,6 +104,25 @@ private extension CompassViewController {
             backButton.widthAnchor.constraint(equalToConstant: 60)
         ])
         backButton.addTarget(self, action: #selector(backButtonPress), for: .touchUpInside)
+    }
+    
+    func configureLocationContainerView() {
+        view.addSubview(locationContainerView)
+        NSLayoutConstraint.activate([
+            locationContainerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40),
+            locationContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            locationContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            locationContainerView.topAnchor.constraint(greaterThanOrEqualTo: compassView.bottomAnchor)
+        ])
+
+    }
+    
+    func configureHeadingLabel() {
+        view.addSubview(headingLabel)
+        NSLayoutConstraint.activate([
+            headingLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            headingLabel.bottomAnchor.constraint(equalTo: compassView.topAnchor, constant: -30)
+        ])
     }
     
     @objc func backButtonPress() {
