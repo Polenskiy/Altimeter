@@ -14,6 +14,14 @@ final class ImagePicker: NSObject {
     
     func showImagePicker(in viewController: UIViewController, completion: ((UIImage) -> ())?) {
         self.completion = completion
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.delegate = self
+        viewController.present(imagePickerController, animated: true)
+    }
+    
+    func showCamera(in viewController: UIViewController, completion: ((UIImage) -> ())?) {
+        self.completion = completion
+        imagePickerController.sourceType = .camera
         imagePickerController.delegate = self
         viewController.present(imagePickerController, animated: true)
     }

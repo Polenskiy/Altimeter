@@ -22,11 +22,19 @@ final class ShareRouter {
 
 // MARK: - ShareRouterInput
 extension ShareRouter: ShareRouterInput {
-    func needCameraRollPermissionAlert() {
+    func needPhotoLibraryPermissionAlert() {
         view.present(shareAlert.getPermissionAlert(), animated: true)
     }
     
-    func showImagePicker(completion: ((UIImage) -> ())?) {
+    func needCameraPermissionAlert() {
+        view.present(shareAlert.getPermissionAlert(), animated: true)
+    }
+    
+    func showPhotoLibrary(completion: ((UIImage) -> ())?) {
         imagePickerController.showImagePicker(in: view, completion: completion)
+    }
+    
+    func showCamera(completion: ((UIImage) -> ())?) {
+        imagePickerController.showCamera(in: view, completion: completion)
     }
 }

@@ -8,7 +8,9 @@
 protocol ShareInteractorInput: AnyObject { 
     
     func didTriggerViewReadyEvent()
-    func canOpenCameraRoll() -> Bool
-    func requestPermission(completion: @escaping (Bool) -> Void)
-    func requestAuthorizationIfForbidden()
+    func canOpenPhotoLibrary() -> Bool
+    func canOpenCamera() -> Bool
+    func requestPermissionPhotoLibrary(completion: @escaping (Bool) -> Void)
+    func requestPermissionCamera(completion: @escaping (Bool) -> Void)
+    func requestAuthorizationIfForbiddenPhotoLibrary()
 }

@@ -7,6 +7,8 @@
 import UIKit
 
 protocol ShareRouterInput: AnyObject {
-    func showImagePicker(completion: ((UIImage) -> ())?)
-    func needCameraRollPermissionAlert()
+    func showPhotoLibrary(completion: ((UIImage) -> ())?)
+    func showCamera(completion: ((UIImage) -> ())?)
+    func needPhotoLibraryPermissionAlert()
+    func needCameraPermissionAlert()
 }

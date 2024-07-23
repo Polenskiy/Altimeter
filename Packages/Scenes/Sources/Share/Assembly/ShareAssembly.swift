@@ -50,7 +50,10 @@ public final class ShareAssembly: DependencyFactory {
     private func interactor() -> ShareInteractor {
         unshared(
             factory: {
-                ShareInteractor(photoPermissionManager: services.photoPermissionManager())
+                ShareInteractor(
+                    photoLibraryPermissionManager: services.photoLibraryPermissionManager(),
+                    cameraPermissionManager: services.cameraPermissionManager()
+                )
             }
         )
     }

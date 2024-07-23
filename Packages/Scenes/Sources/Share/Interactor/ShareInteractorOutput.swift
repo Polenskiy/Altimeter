@@ -7,5 +7,6 @@
 
 protocol ShareInteractorOutput: AnyObject { 
     
-    func authorizationForbidden()
+    func authorizationForbiddenForPhotoLibrary()
+    func authorizationForbiddenForCamera()
 }

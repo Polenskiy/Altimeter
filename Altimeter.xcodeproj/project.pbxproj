@@ -309,6 +309,7 @@
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Altimeter/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow access.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Grant Location permission";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow access.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -338,6 +339,7 @@
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Altimeter/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow access.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Grant Location permission";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow access.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

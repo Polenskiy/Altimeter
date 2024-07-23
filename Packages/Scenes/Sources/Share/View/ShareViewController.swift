@@ -39,7 +39,7 @@ final class ShareViewController: UIViewController {
         configureContainerButton()
         configureShareContainerView()
         shareNavigationBar = ShareNavigationBar(viewController: self) { [weak self] in
-            self?.output?.addPhotoButtonTapped()
+            self?.output?.cameraButtonTapped()
         }
         containerButton.setAddPhotoButtonTarget(self, action: #selector(addPhotoButtonTapped))
     }

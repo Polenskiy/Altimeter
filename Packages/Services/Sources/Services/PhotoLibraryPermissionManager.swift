@@ -8,7 +8,7 @@
 import UIKit
 import Photos
 
-public protocol PhotoPermissionManagerProtocol {
+public protocol PhotoLibraryPermissionManagerProtocol {
     var canRequest: Bool { get }
     var hasPermission: Bool { get }
     var permissionStatusChangeHandler: ((Bool) -> Void)? { get set }
@@ -16,7 +16,7 @@ public protocol PhotoPermissionManagerProtocol {
     func startCheckingPermission()
 }
 
-public final class PhotoPermissionManager: NSObject, PhotoPermissionManagerProtocol {
+public final class PhotoLibraryPermissionManager: NSObject, PhotoLibraryPermissionManagerProtocol {
     
     public var canRequest: Bool {
         PHPhotoLibrary.authorizationStatus() == .notDetermined
@@ -47,7 +47,7 @@ public final class PhotoPermissionManager: NSObject, PhotoPermissionManagerProto
     }
 }
 
-private extension PhotoPermissionManager {
+private extension PhotoLibraryPermissionManager {
     func checkPermission() {
         permissionStatusChangeHandler?(hasPermission)
     }

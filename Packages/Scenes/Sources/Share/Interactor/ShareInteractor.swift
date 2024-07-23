@@ -6,38 +6,63 @@
 //
 import Services
 
+// MARK: - class ShareInteractor
 final class ShareInteractor {
     
     weak var output: ShareInteractorOutput?
 
-    private var photoPermissionManager: PhotoPermissionManagerProtocol
+    private var photoLibraryPermissionManager: PhotoLibraryPermissionManagerProtocol
+    private var cameraPermissionManager: CameraPermissionManagerProtocol
     
-    init(photoPermissionManager: PhotoPermissionManagerProtocol) {
-        self.photoPermissionManager = photoPermissionManager
+    init(photoLibraryPermissionManager: PhotoLibraryPermissionManagerProtocol, cameraPermissionManager: CameraPermissionManagerProtocol) {
+        self.photoLibraryPermissionManager = photoLibraryPermissionManager
+        self.cameraPermissionManager = cameraPermissionManager
     }
 }
 
 // MARK: - ShareInteractorInput
 extension ShareInteractor: ShareInteractorInput {
-    func requestPermission(completion: @escaping (Bool) -> Void) {
-        if photoPermissionManager.canRequest {
-            photoPermissionManager.requestAuthorization()
-            photoPermissionManager.permissionStatusChangeHandler = { hasPermission in
+    
+    func requestPermissionPhotoLibrary(completion: @escaping (Bool) -> Void) {
+        if photoLibraryPermissionManager.canRequest {
+            photoLibraryPermissionManager.requestAuthorization()
+            photoLibraryPermissionManager.permissionStatusChangeHandler = { hasPermission in
                 completion(hasPermission)
             }
         } else {
-            requestAuthorizationIfForbidden()
+            requestAuthorizationIfForbiddenPhotoLibrary()
         }
     }
     
-    func requestAuthorizationIfForbidden() {
-        if !photoPermissionManager.hasPermission {
-            output?.authorizationForbidden()
+    func requestPermissionCamera(completion: @escaping (Bool) -> Void) {
+        if cameraPermissionManager.canRequest {
+            cameraPermissionManager.requestAuthorization()
+            photoLibraryPermissionManager.permissionStatusChangeHandler = { hasPermission in
+                completion(hasPermission)
+            }
+        } else {
+            requestAuthorizationIfForbiddenCamera()
         }
     }
     
-    func canOpenCameraRoll() -> Bool {
-        photoPermissionManager.hasPermission
+    func requestAuthorizationIfForbiddenPhotoLibrary() {
+        if !photoLibraryPermissionManager.hasPermission {
+            output?.authorizationForbiddenForPhotoLibrary()
+        }
+    }
+    
+    func requestAuthorizationIfForbiddenCamera() {
+        if !cameraPermissionManager.hasPermission {
+            output?.authorizationForbiddenForCamera()
+        }
+    }
+    
+    func canOpenPhotoLibrary() -> Bool {
+        photoLibraryPermissionManager.hasPermission
+    }
+    
+    func canOpenCamera() -> Bool {
+        cameraPermissionManager.hasPermission
     }
     
     func didTriggerViewReadyEvent() {

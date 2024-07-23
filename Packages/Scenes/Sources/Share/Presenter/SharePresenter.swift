@@ -17,7 +17,6 @@ final class SharePresenter: BasePresenter {
     var router: ShareRouterInput!
     
     // MARK: - Functions
-    
     override func didTriggerViewReadyEvent() {
         super.didTriggerViewReadyEvent()
         interactor.didTriggerViewReadyEvent()
@@ -34,8 +33,12 @@ extension SharePresenter: ShareModuleInput {
 
 // MARK: - ShareInteractorOutput
 extension SharePresenter: ShareInteractorOutput {
-    func authorizationForbidden() {
-        router.needCameraRollPermissionAlert()
+    func authorizationForbiddenForPhotoLibrary() {
+        router.needPhotoLibraryPermissionAlert()
+    }
+    
+    func authorizationForbiddenForCamera() {
+        router.needCameraPermissionAlert()
     }
     
 }
@@ -43,18 +46,30 @@ extension SharePresenter: ShareInteractorOutput {
 // MARK: - ShareViewControllerOutput
 extension SharePresenter: ShareViewControllerOutput {
     
+    func cameraButtonTapped() {
+        if interactor.canOpenCamera() {
+            router.showCamera { _ in
+                //TODO: - если пользователь сделал снимок, сохранить его в галерею
+            }
+        } else {
+            interactor.requestPermissionCamera { _ in
+                
+            }
+        }
+    }
+    
+    
     func addPhotoButtonTapped() {
-        if interactor.canOpenCameraRoll() {
-            router.showImagePicker { [weak self] photo in
+        if interactor.canOpenPhotoLibrary() {
+            router.showPhotoLibrary { [weak self] photo in
                 self?.view.didChoose(image: photo)
             }
         } else {
-            interactor.requestPermission { [weak self] hasPermission in
+            interactor.requestPermissionPhotoLibrary { [weak self] hasPermission in
                 if hasPermission {
                     self?.addPhotoButtonTapped()
                 } else {
-                    // TODO: - Показать Alert "Предоставль разрешение"
-                    self?.interactor.requestAuthorizationIfForbidden()
+                    self?.interactor.requestAuthorizationIfForbiddenPhotoLibrary()
                 }
             }
         }
