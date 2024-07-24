@@ -30,11 +30,7 @@ extension ShareRouter: ShareRouterInput {
         view.present(shareAlert.getPermissionAlert(), animated: true)
     }
     
-    func showPhotoLibrary(completion: ((UIImage) -> ())?) {
-        imagePickerController.showImagePicker(in: view, completion: completion)
-    }
-    
-    func showCamera(completion: ((UIImage) -> ())?) {
-        imagePickerController.showCamera(in: view, completion: completion)
+    func showImagePicker(sourceType: UIImagePickerController.SourceType, completion: ((UIImage) -> ())?) {
+        imagePickerController.showImagePicker(in: view, completion: completion, sourceType: sourceType )
     }
 }

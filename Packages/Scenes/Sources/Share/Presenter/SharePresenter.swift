@@ -19,7 +19,6 @@ final class SharePresenter: BasePresenter {
     // MARK: - Functions
     override func didTriggerViewReadyEvent() {
         super.didTriggerViewReadyEvent()
-        interactor.didTriggerViewReadyEvent()
         view.setupInitialState()
     }
 }
@@ -48,7 +47,7 @@ extension SharePresenter: ShareViewControllerOutput {
     
     func cameraButtonTapped() {
         if interactor.canOpenCamera() {
-            router.showCamera { _ in
+            router.showImagePicker(sourceType: .camera) { _ in
                 //TODO: - если пользователь сделал снимок, сохранить его в галерею
             }
         } else {
@@ -61,7 +60,7 @@ extension SharePresenter: ShareViewControllerOutput {
     
     func addPhotoButtonTapped() {
         if interactor.canOpenPhotoLibrary() {
-            router.showPhotoLibrary { [weak self] photo in
+            router.showImagePicker(sourceType: .photoLibrary) { [weak self] photo in
                 self?.view.didChoose(image: photo)
             }
         } else {

@@ -64,8 +64,5 @@ extension ShareInteractor: ShareInteractorInput {
     func canOpenCamera() -> Bool {
         cameraPermissionManager.hasPermission
     }
-    
-    func didTriggerViewReadyEvent() {
-    }
 }
 

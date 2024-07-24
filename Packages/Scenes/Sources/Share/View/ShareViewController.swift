@@ -11,13 +11,9 @@ final class ShareViewController: UIViewController {
     
     private var shareNavigationBar: ShareNavigationBar?
     
-    private let containerButton: ShareContainerButton = {
-        let view = ShareContainerButton()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    private let containerButton = ShareContainerButton()
     
-    private let shareContainerView: ShareContainerView = {
+    private let сontainerView: ShareContainerView = {
         let view = ShareContainerView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -78,6 +74,7 @@ private extension ShareViewController {
     
     func configureContainerButton() {
         view.addSubview(containerButton)
+        containerButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             containerButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             containerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
@@ -87,12 +84,12 @@ private extension ShareViewController {
     }
     
     func configureShareContainerView() {
-        view.addSubview(shareContainerView)
+        view.addSubview(сontainerView)
         NSLayoutConstraint.activate([
-            shareContainerView.topAnchor.constraint(equalTo: containerButton.bottomAnchor, constant: 32),
-            shareContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            shareContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            shareContainerView.heightAnchor.constraint(equalToConstant: 44),
+            сontainerView.topAnchor.constraint(equalTo: containerButton.bottomAnchor, constant: 32),
+            сontainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            сontainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            сontainerView.heightAnchor.constraint(equalToConstant: 44),
     
         ])
     }

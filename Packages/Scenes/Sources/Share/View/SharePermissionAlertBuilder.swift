@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+// TODO: - Сделать общий alert
 struct SharePermissionAlertBuilder {
     
     func getPermissionAlert() -> UIAlertController {
