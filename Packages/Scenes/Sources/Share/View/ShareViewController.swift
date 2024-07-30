@@ -7,6 +7,16 @@
 
 import UIKit
 
+extension ShareViewController {
+    
+    struct AddressViewModel {
+        let altitude: String
+        let latitude: String
+        let longitude: String
+        let address: String
+    }
+}
+
 final class ShareViewController: UIViewController {
     
     private var shareNavigationBar: ShareNavigationBar?
@@ -67,6 +77,10 @@ extension ShareViewController: ShareViewControllerInput {
     
     func setupInitialState() {
         view.backgroundColor = UIColor(named: "darkBlue")
+    }
+    
+    func updateLocation(with viewModel: AddressViewModel) {
+        photoLocationContainerView.updadateLocation(with: viewModel)
     }
 }
 

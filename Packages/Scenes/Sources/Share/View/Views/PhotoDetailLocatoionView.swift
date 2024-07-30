@@ -47,7 +47,9 @@ final class PhotoDetailLocatoionView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
+    func updateSubtitle(_ subtitle: String) {
+          subtitleLabel.text = subtitle
+      }
 }
 
 private extension PhotoDetailLocatoionView {

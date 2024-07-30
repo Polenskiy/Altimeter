@@ -5,7 +5,7 @@
 //	Where my children
 //
 
-protocol ShareInteractorOutput: AnyObject { 
+protocol ShareInteractorOutput: AnyObject {
     
     func authorizationForbiddenForPhotoLibrary()
     func authorizationForbiddenForCamera()

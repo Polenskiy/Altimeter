@@ -4,7 +4,7 @@
 //  SharePresenter.swift
 //	Where my children
 //
-
+import CoreLocation
 
 final class SharePresenter: BasePresenter {
     
@@ -39,7 +39,6 @@ extension SharePresenter: ShareInteractorOutput {
     func authorizationForbiddenForCamera() {
         router.needCameraPermissionAlert()
     }
-    
 }
 
 // MARK: - ShareViewControllerOutput
@@ -47,8 +46,9 @@ extension SharePresenter: ShareViewControllerOutput {
     
     func cameraButtonTapped() {
         if interactor.canOpenCamera() {
-            router.showImagePicker(sourceType: .camera) { _ in
-                //TODO: - если пользователь сделал снимок, сохранить его в галерею
+            router.showImagePicker(sourceType: .camera) { [weak self] photo in
+                self?.view.didChoose(image: photo)
+                self?.setLocation()
             }
         } else {
             interactor.requestPermissionCamera { _ in
@@ -61,7 +61,11 @@ extension SharePresenter: ShareViewControllerOutput {
     func addPhotoButtonTapped() {
         if interactor.canOpenPhotoLibrary() {
             router.showImagePicker(sourceType: .photoLibrary) { [weak self] photo in
-                self?.view.didChoose(image: photo)
+                guard let self else {
+                    return
+                }
+                self.view.didChoose(image: photo)
+                self.setLocation()
             }
         } else {
             interactor.requestPermissionPhotoLibrary { [weak self] hasPermission in
@@ -71,6 +75,34 @@ extension SharePresenter: ShareViewControllerOutput {
                     self?.interactor.requestAuthorizationIfForbiddenPhotoLibrary()
                 }
             }
+        }
+    }
+}
+
+private extension SharePresenter {
+    func setLocation() {
+        guard let location = self.interactor.getLocation() else {
+            return
+        }
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(location) { [weak self] (placemarks, error) in
+            guard let self = self, let placemark = placemarks?.first, error == nil else { return }
+            
+            let addressComponents = [
+                placemark.thoroughfare,
+                placemark.country,
+                placemark.locality
+            ].compactMap { $0 }
+            
+            let address = addressComponents.joined(separator: ", ")
+            let viewModel = ShareViewController.AddressViewModel(
+                altitude: location.verticalAccuracy.description,
+                latitude: location.coordinate.latitude.description,
+                longitude: location.coordinate.longitude.description,
+                address: address
+            )
+            
+            self.view.updateLocation(with: viewModel)
         }
     }
 }

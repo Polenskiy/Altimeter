@@ -54,6 +54,11 @@ class PhotoLocationView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func updadate(with viewModel: ShareViewController.AddressViewModel) {
+        addressView.updateSubtitle(viewModel.address)
+        coordinatesView.updateSubtitle("\(viewModel.latitude), \(viewModel.longitude)")
+        altitudeView.updateSubtitle(viewModel.altitude)
+    }
     
 }
 

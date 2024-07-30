@@ -52,7 +52,8 @@ public final class ShareAssembly: DependencyFactory {
             factory: {
                 ShareInteractor(
                     photoLibraryPermissionManager: services.photoLibraryPermissionManager(),
-                    cameraPermissionManager: services.cameraPermissionManager()
+                    cameraPermissionManager: services.cameraPermissionManager(),
+                    locationListener: services.locationListener()
                 )
             }
         )

@@ -7,15 +7,6 @@
 
 import UIKit
 
-extension PhotoLocationContainerView {
-    struct ViewModel {
-        let photo: UIImage
-        let altitude: CGFloat
-        let address: String
-        let coordinate: CGFloat
-    }
-}
-
 final class PhotoLocationContainerView: UIView {
     
     private let verticalStackView: UIStackView = {
@@ -60,6 +51,9 @@ final class PhotoLocationContainerView: UIView {
         photoImageView.image = image
     }
     
+    func updadateLocation(with viewModel: ShareViewController.AddressViewModel) {
+        photoLocationView.updadate(with: viewModel)
+    }
 }
 
 extension PhotoLocationContainerView {
@@ -68,15 +62,16 @@ extension PhotoLocationContainerView {
         configureVerticalStackView()
         configurePhotoImageView()
         configurePhotoLocationView()
+        configureAppearenceView()
     }
     
     func configureVerticalStackView() {
         addSubview(verticalStackView)
         NSLayoutConstraint.activate([
-            verticalStackView.topAnchor.constraint(equalTo: topAnchor),
-            verticalStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            verticalStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            verticalStackView.trailingAnchor.constraint(equalTo: trailingAnchor)
+            verticalStackView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            verticalStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+            verticalStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            verticalStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
         ])
     }
     
@@ -95,5 +90,10 @@ extension PhotoLocationContainerView {
             photoLocationView.leadingAnchor.constraint(equalTo: verticalStackView.leadingAnchor),
             photoLocationView.trailingAnchor.constraint(equalTo: verticalStackView.trailingAnchor)
         ])
+    }
+    
+    func configureAppearenceView() {
+        backgroundColor = UIColor(named: "lightBlue")
+        layer.cornerRadius = 32
     }
 }
