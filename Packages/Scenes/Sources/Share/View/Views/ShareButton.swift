@@ -17,7 +17,6 @@ final class ShareButton: UIButton {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
 
 private extension ShareButton {
@@ -32,6 +31,4 @@ private extension ShareButton {
         translatesAutoresizingMaskIntoConstraints = false
         titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
     }
-    
 }
-

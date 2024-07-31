@@ -53,7 +53,11 @@ private extension PhotoLibraryPermissionManager {
     }
     
     func startObservingEnteringForeground() {
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(applicationWillEnterForeground),
+            name: UIApplication.willEnterForegroundNotification,
+            object: nil
         )
     }
     

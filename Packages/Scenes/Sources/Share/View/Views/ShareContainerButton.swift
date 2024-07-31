@@ -15,23 +15,26 @@ final class ShareContainerButton: UIView {
         return button
     }()
     
+    var configureAddPhotoButtonTarget: ((Any?, Selector) -> Void)?
+    
     override init(frame: CGRect) {
         super.init(frame: .zero)
         setup()
+        configureAddPhotoButtonTarget = { target, action in
+            self.addPhotoButton.addTarget(target, action: action, for: .touchUpInside)
+        }
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    func setAddPhotoButtonTarget(_ target: Any?, action: Selector) {
-        addPhotoButton.addTarget(target, action: action, for: .touchUpInside)
-    }
+    // MARK: - Functions
     
     func setButton(isHidden: Bool) {
         addPhotoButton.isHidden = isHidden
     }
 }
+// MARK: - extension ShareContainerButton
 
 private extension ShareContainerButton {
     

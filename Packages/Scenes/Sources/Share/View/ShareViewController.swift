@@ -19,7 +19,7 @@ extension ShareViewController {
 
 final class ShareViewController: UIViewController {
     
-    private var shareNavigationBar: ShareNavigationBar?
+    private var navigationBar: ShareNavigationBar?
     
     private let containerButton = ShareContainerButton()
     
@@ -43,21 +43,21 @@ final class ShareViewController: UIViewController {
         super.viewDidLoad()
         output?.didTriggerViewReadyEvent()
         configureContainerButton()
-        configureShareContainerView()
-        shareNavigationBar = ShareNavigationBar(viewController: self) { [weak self] in
+        configureContainerView()
+        navigationBar = ShareNavigationBar(viewController: self) { [weak self] in
             self?.output?.cameraButtonTapped()
         }
-        containerButton.setAddPhotoButtonTarget(self, action: #selector(addPhotoButtonTapped))
+        containerButton.configureAddPhotoButtonTarget?(self, #selector(addPhotoButtonTapped))
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        shareNavigationBar?.configure(withTitle: "Share")
+        navigationBar?.configure(withTitle: "Share")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        shareNavigationBar?.resetAppearence()
+        navigationBar?.resetAppearence()
         
     }
     
@@ -97,7 +97,7 @@ private extension ShareViewController {
         ])
     }
     
-    func configureShareContainerView() {
+    func configureContainerView() {
         view.addSubview(сontainerView)
         NSLayoutConstraint.activate([
             сontainerView.topAnchor.constraint(equalTo: containerButton.bottomAnchor, constant: 32),

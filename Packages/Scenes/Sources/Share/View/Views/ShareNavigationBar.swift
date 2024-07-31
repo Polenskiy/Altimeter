@@ -15,13 +15,12 @@ final class ShareNavigationBar {
     
     init(viewController: UIViewController, onActionButton: @escaping () -> Void) {
         self.viewController = viewController
- 
         self.actionHandler = onActionButton
     }
     
      func configure(withTitle title: String) {
     
-         if let navigationController = viewController?.navigationController {
+         guard let navigationController = viewController?.navigationController else { return }
             
             if #available(iOS 13.0, *) {
                 
@@ -39,7 +38,6 @@ final class ShareNavigationBar {
             }
             navigationController.navigationBar.tintColor = UIColor.white
              viewController?.navigationItem.title = title
-        }
         
         if #available(iOS 14.0, *) {
             
@@ -58,6 +56,3 @@ final class ShareNavigationBar {
         actionHandler()
     }
 }
-
-
-
