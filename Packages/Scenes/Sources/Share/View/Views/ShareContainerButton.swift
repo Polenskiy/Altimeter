@@ -9,20 +9,18 @@ import UIKit
 
 final class ShareContainerButton: UIView {
     
-    private let addPhotoButton: ShareButton = {
+    private lazy var addPhotoButton: ShareButton = {
         let button = ShareButton(title: "Add Photo", image: nil)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(addPhotoButtonPressed), for: .touchUpInside)
         return button
     }()
     
-    var configureAddPhotoButtonTarget: ((Any?, Selector) -> Void)?
+    private var addPhotoButtonHandler: (() -> Void)?
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
         setup()
-        configureAddPhotoButtonTarget = { target, action in
-            self.addPhotoButton.addTarget(target, action: action, for: .touchUpInside)
-        }
     }
     
     required init?(coder: NSCoder) {
@@ -57,5 +55,9 @@ private extension ShareContainerButton {
         layer.cornerRadius = 32
         layer.borderWidth = 2
         layer.borderColor = UIColor(named: "lightBlue")?.cgColor
+    }
+    
+    @objc func addPhotoButtonPressed() {
+        addPhotoButtonHandler?()
     }
 }

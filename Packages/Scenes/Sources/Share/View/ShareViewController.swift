@@ -47,7 +47,11 @@ final class ShareViewController: UIViewController {
         navigationBar = ShareNavigationBar(viewController: self) { [weak self] in
             self?.output?.cameraButtonTapped()
         }
-        containerButton.configureAddPhotoButtonTarget?(self, #selector(addPhotoButtonTapped))
+        containerButton.addPhotoButtonHandler = { [weak self] in
+            self?.output?.addPhotoButtonTapped()
+        }
+        сontainerView.locationButtonHandler = { }
+        сontainerView.photoButtonHandler = { }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,11 +64,6 @@ final class ShareViewController: UIViewController {
         navigationBar?.resetAppearence()
         
     }
-    
-    @objc private func addPhotoButtonTapped() {
-        output?.addPhotoButtonTapped()
-    }
-    
 }
 
 // MARK: - ShareViewControllerInput

@@ -9,6 +9,9 @@ import UIKit
 
 final class ShareContainerView: UIView {
     
+    var photoButtonHandler: (() -> Void)?
+    var locationButtonHandler: (() -> Void)?
+    
     private let horizontalStackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
@@ -30,7 +33,6 @@ final class ShareContainerView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
 
 private extension ShareContainerView {
@@ -38,6 +40,16 @@ private extension ShareContainerView {
     func setup() {
         configureHorizontalStackView()
         configureButtons()
+        photoButton.addTarget(self, action: #selector(photoButtonTapped), for: .touchUpInside)
+        locationButton.addTarget(self, action: #selector(locationButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc func photoButtonTapped() {
+        photoButtonHandler?()
+    }
+    
+    @objc func locationButtonTapped() {
+        locationButtonHandler?()
     }
     
     func configureHorizontalStackView() {
