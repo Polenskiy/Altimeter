@@ -3,4 +3,7 @@
 //	Where my children
 //
 
-protocol ShareViewControllerOutput: BaseViewControllerOutput { }
+protocol ShareViewControllerOutput: BaseViewControllerOutput {
+    func addPhotoButtonTapped()
+    func cameraButtonTapped()
+}

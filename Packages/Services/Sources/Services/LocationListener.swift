@@ -13,6 +13,7 @@ public protocol LocationListenerProtocol {
     func stopUpdatingLocation()
     func startUpdatingHeading(handler: ((CLHeading) -> Void)?)
     func stopUpdatingHeading()
+    func getLocation() -> CLLocation?
 }
 
 public final class LocationListener: NSObject, LocationListenerProtocol {
@@ -44,6 +45,10 @@ public final class LocationListener: NSObject, LocationListenerProtocol {
     public func stopUpdatingHeading() {
         locationManager.stopUpdatingHeading()
         headingHandler = nil
+    }
+    
+    public func getLocation() -> CLLocation? {
+        locationManager.location
     }
 }
 

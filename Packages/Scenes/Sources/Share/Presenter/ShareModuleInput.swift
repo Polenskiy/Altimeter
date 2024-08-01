@@ -5,4 +5,4 @@
 //	Where my children
 //
 
-protocol ShareModuleInput: BaseModuleInput { }
+public protocol ShareModuleInput: BaseModuleInput { }

@@ -20,6 +20,20 @@ public final class Services: DependencyFactory {
         )
     }
     
+    public func photoLibraryPermissionManager() -> PhotoLibraryPermissionManagerProtocol {
+        shared(
+            factory: {
+                PhotoLibraryPermissionManager()
+            })
+    }
+    
+    public func cameraPermissionManager() -> CameraPermissionManagerProtocol {
+        shared(
+            factory: {
+                CameraPermissionManager()
+            })
+    }
+    
     public func networkMonitor() -> NetworkMonitorProtocol {
         shared(
             factory: {

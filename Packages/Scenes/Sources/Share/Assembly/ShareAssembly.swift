@@ -1,9 +1,14 @@
 
 import DI
+import Services
 
 public final class ShareAssembly: DependencyFactory {
     
-    func module() -> ShareModuleInput {
+    private let services: Services = Services.assembly()
+    
+    private let imagePicker = ImagePicker()
+    
+   public func module() -> ShareModuleInput {
         return unshared(
             factory: { [unowned self] in
                 let presenter = self.presenter()
@@ -29,7 +34,7 @@ public final class ShareAssembly: DependencyFactory {
     private func router() -> ShareRouter {
         unshared(
             factory: {
-                ShareRouter()
+                ShareRouter(imagePicker: imagePicker)
             }
         )
     }
@@ -45,7 +50,11 @@ public final class ShareAssembly: DependencyFactory {
     private func interactor() -> ShareInteractor {
         unshared(
             factory: {
-                ShareInteractor()
+                ShareInteractor(
+                    photoLibraryPermissionManager: services.photoLibraryPermissionManager(),
+                    cameraPermissionManager: services.cameraPermissionManager(),
+                    locationListener: services.locationListener()
+                )
             }
         )
     }
