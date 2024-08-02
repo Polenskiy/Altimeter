@@ -77,6 +77,10 @@ extension SharePresenter: ShareViewControllerOutput {
             }
         }
     }
+    
+    func photoButtonTapped() {
+        router.showActivityViewController()
+    }
 }
 
 private extension SharePresenter {

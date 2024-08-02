@@ -51,7 +51,9 @@ final class ShareViewController: UIViewController {
             self?.output?.addPhotoButtonTapped()
         }
         сontainerView.locationButtonHandler = { }
-        сontainerView.photoButtonHandler = { }
+        сontainerView.photoButtonHandler = { [weak self] in
+            self?.output?.photoButtonTapped()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
