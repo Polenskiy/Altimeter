@@ -22,7 +22,7 @@ final class ShareContainerView: UIView {
         return stack
     }()
     
-    private let photoButton = ShareButton(title: "Share", image: UIImage(named: "photoIcon"))
+    private let shareButton = ShareButton(title: "Share", image: UIImage(named: "photoIcon"))
     private let locationButton = ShareButton(title: "Location", image: UIImage(named: "locationIcon"))
     
     override init(frame: CGRect) {
@@ -40,7 +40,7 @@ private extension ShareContainerView {
     func setup() {
         configureHorizontalStackView()
         configureButtons()
-        photoButton.addTarget(self, action: #selector(photoButtonTapped), for: .touchUpInside)
+        shareButton.addTarget(self, action: #selector(photoButtonTapped), for: .touchUpInside)
         locationButton.addTarget(self, action: #selector(locationButtonTapped), for: .touchUpInside)
     }
     
@@ -63,12 +63,12 @@ private extension ShareContainerView {
     }
     
     func configureButtons() {
-        horizontalStackView.addArrangedSubview(photoButton)
+        horizontalStackView.addArrangedSubview(shareButton)
         horizontalStackView.addArrangedSubview(locationButton)
         
         NSLayoutConstraint.activate([
-            photoButton.topAnchor.constraint(equalTo: horizontalStackView.topAnchor),
-            photoButton.bottomAnchor.constraint(equalTo: horizontalStackView.bottomAnchor),
+            shareButton.topAnchor.constraint(equalTo: horizontalStackView.topAnchor),
+            shareButton.bottomAnchor.constraint(equalTo: horizontalStackView.bottomAnchor),
             locationButton.topAnchor.constraint(equalTo: horizontalStackView.topAnchor),
             locationButton.bottomAnchor.constraint(equalTo: horizontalStackView.bottomAnchor),
         ])
