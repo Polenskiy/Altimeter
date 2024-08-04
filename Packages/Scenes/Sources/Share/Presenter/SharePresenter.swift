@@ -79,7 +79,10 @@ extension SharePresenter: ShareViewControllerOutput {
     }
     
     func photoButtonTapped() {
-        router.showActivityViewController()
+        guard let image = view.getImageFromPhotoLocationContainer() else {
+            return
+        }
+        router.showActivityViewController(with: [image])
     }
 }
 

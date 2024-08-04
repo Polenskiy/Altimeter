@@ -11,14 +11,12 @@ final class ShareRouter {
     
     private let imagePickerController: ImagePicker
     private let shareAlert = SharePermissionAlertBuilder()
-    private let activityViewController: UIActivityViewController
     
     weak var view: UIViewController!
     
     // MARK: - Functions
-    init(imagePicker: ImagePicker, activityViewController: UIActivityViewController) {
+    init(imagePicker: ImagePicker) {
         self.imagePickerController = imagePicker
-        self.activityViewController = activityViewController
     }
 }
 
@@ -36,7 +34,11 @@ extension ShareRouter: ShareRouterInput {
         imagePickerController.showImagePicker(in: view, completion: completion, sourceType: sourceType )
     }
     
-    func showActivityViewController() {
+    func showActivityViewController(with photos: [Any]) {
+        let activityViewController = UIActivityViewController(
+            activityItems: photos,
+            applicationActivities: nil
+        )
         view.present(activityViewController, animated: true)
     }
 }

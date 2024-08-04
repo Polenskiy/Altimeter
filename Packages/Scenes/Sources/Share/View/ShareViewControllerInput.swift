@@ -10,4 +10,5 @@ protocol ShareViewControllerInput: BaseViewControllerInput {
     
     func didChoose(image: UIImage)
     func updateLocation(with viewModel: ShareViewController.AddressViewModel)
+    func getImageFromPhotoLocationContainer() -> UIImage?
 }

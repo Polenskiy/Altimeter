@@ -83,6 +83,10 @@ extension ShareViewController: ShareViewControllerInput {
     func updateLocation(with viewModel: AddressViewModel) {
         photoLocationContainerView.updadateLocation(with: viewModel)
     }
+    
+    func getImageFromPhotoLocationContainer() -> UIImage? {
+        photoLocationContainerView.renderToImage()
+       }
 }
 
 private extension ShareViewController {

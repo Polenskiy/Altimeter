@@ -22,7 +22,7 @@ final class ShareContainerView: UIView {
         return stack
     }()
     
-    private let photoButton = ShareButton(title: "Photo", image: UIImage(named: "photoIcon"))
+    private let photoButton = ShareButton(title: "Share", image: UIImage(named: "photoIcon"))
     private let locationButton = ShareButton(title: "Location", image: UIImage(named: "locationIcon"))
     
     override init(frame: CGRect) {
