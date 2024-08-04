@@ -59,7 +59,6 @@ class PhotoLocationView: UIView {
         coordinatesView.updateSubtitle("\(viewModel.latitude), \(viewModel.longitude)")
         altitudeView.updateSubtitle(viewModel.altitude)
     }
-    
 }
 
 private extension PhotoLocationView {
@@ -81,7 +80,6 @@ private extension PhotoLocationView {
         ])
     }
     
-    
     func configureAltitudeView() {
         horizontalStackView.addArrangedSubview(altitudeView)
         NSLayoutConstraint.activate([
@@ -102,5 +100,4 @@ private extension PhotoLocationView {
  
         ])
     }
-
 }

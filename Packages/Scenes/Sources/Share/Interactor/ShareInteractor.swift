@@ -33,7 +33,6 @@ extension ShareInteractor: ShareInteractorInput {
         locationListener.getLocation()
     }
     
-    
     func requestPermissionPhotoLibrary(completion: @escaping (Bool) -> Void) {
         if photoLibraryPermissionManager.canRequest {
             photoLibraryPermissionManager.requestAuthorization()

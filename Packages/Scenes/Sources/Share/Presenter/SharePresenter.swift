@@ -57,7 +57,6 @@ extension SharePresenter: ShareViewControllerOutput {
         }
     }
     
-    
     func addPhotoButtonTapped() {
         if interactor.canOpenPhotoLibrary() {
             router.showImagePicker(sourceType: .photoLibrary) { [weak self] photo in
