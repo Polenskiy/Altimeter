@@ -50,7 +50,9 @@ final class ShareViewController: UIViewController {
         containerButton.addPhotoButtonHandler = { [weak self] in
             self?.output?.addPhotoButtonTapped()
         }
-        сontainerView.locationButtonHandler = { }
+        сontainerView.locationButtonHandler = { [weak self] in
+            self?.output?.locationButtonTapped()
+        }
         сontainerView.photoButtonHandler = { }
     }
     

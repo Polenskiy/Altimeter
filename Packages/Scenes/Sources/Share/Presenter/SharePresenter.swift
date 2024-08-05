@@ -77,6 +77,10 @@ extension SharePresenter: ShareViewControllerOutput {
             }
         }
     }
+    
+    func locationButtonTapped() {
+        router.navigateToLocationView()
+    }
 }
 
 private extension SharePresenter {
