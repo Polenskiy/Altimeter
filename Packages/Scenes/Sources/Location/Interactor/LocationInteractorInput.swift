@@ -1,0 +1,3 @@
+
+
+protocol LocationInteractorInput: AnyObject { }
