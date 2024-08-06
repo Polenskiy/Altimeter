@@ -1,0 +1,3 @@
+
+
+protocol LocationViewControllerOutput: BaseViewControllerOutput { }

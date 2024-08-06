@@ -1,0 +1,3 @@
+
+
+protocol LocationRouterInput: AnyObject { }

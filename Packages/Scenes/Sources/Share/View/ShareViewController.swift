@@ -50,7 +50,9 @@ final class ShareViewController: UIViewController {
         containerButton.addPhotoButtonHandler = { [weak self] in
             self?.output?.addPhotoButtonTapped()
         }
-        сontainerView.locationButtonHandler = { }
+        сontainerView.locationButtonHandler = { [weak self] in
+            self?.output?.locationButtonTapped()
+        }
         сontainerView.photoButtonHandler = { [weak self] in
             self?.output?.photoButtonTapped()
         }
@@ -59,12 +61,6 @@ final class ShareViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationBar?.configure(withTitle: "Share")
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationBar?.resetAppearence()
-        
     }
 }
 

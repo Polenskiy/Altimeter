@@ -10,14 +10,16 @@ import UIKit
 final class ShareRouter {
     
     private let imagePickerController: ImagePicker
+    private let locationAssembly: LocationAssembly
     private let shareAlert = SharePermissionAlertBuilder()
     
     weak var view: UIViewController!
     
-    // MARK: - Functions
-    init(imagePicker: ImagePicker) {
+    init(imagePicker: ImagePicker, locationAssembly: LocationAssembly) {
         self.imagePickerController = imagePicker
+        self.locationAssembly = locationAssembly
     }
+    // MARK: - Functions
 }
 
 // MARK: - ShareRouterInput
@@ -34,6 +36,11 @@ extension ShareRouter: ShareRouterInput {
         imagePickerController.showImagePicker(in: view, completion: completion, sourceType: sourceType )
     }
     
+    func navigateToLocationView() {
+        let viewController = locationAssembly.module().viewController
+        view.navigationController?.pushViewController(viewController, animated: true)
+    }
+  
     func showActivityViewController(with photo: UIImage) {
         let activityViewController = UIActivityViewController(
             activityItems: [photo],

@@ -6,5 +6,6 @@
 protocol ShareViewControllerOutput: BaseViewControllerOutput {
     func addPhotoButtonTapped()
     func cameraButtonTapped()
+    func locationButtonTapped()
     func photoButtonTapped()
 }

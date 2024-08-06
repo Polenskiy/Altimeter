@@ -16,7 +16,7 @@ final class ShareContainerButton: UIView {
         return button
     }()
     
-     var addPhotoButtonHandler: (() -> Void)?
+    var addPhotoButtonHandler: (() -> Void)?
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
