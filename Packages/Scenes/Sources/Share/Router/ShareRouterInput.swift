@@ -11,4 +11,5 @@ protocol ShareRouterInput: AnyObject {
     func needPhotoLibraryPermissionAlert()
     func needCameraPermissionAlert()
     func navigateToLocationView()
+    func showActivityViewController(with photo: UIImage)
 }

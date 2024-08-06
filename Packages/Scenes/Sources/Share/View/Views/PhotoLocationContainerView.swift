@@ -96,4 +96,11 @@ extension PhotoLocationContainerView {
         backgroundColor = UIColor(named: "lightBlue")
         layer.cornerRadius = 32
     }
+    
+    func renderToImage() -> UIImage? {
+        let render = UIGraphicsImageRenderer(size: self.bounds.size)
+        return render.image { _ in
+            self.drawHierarchy(in: self.bounds, afterScreenUpdates: true)
+        }
+    }
 }

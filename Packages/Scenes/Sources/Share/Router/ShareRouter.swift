@@ -40,4 +40,12 @@ extension ShareRouter: ShareRouterInput {
         let viewController = locationAssembly.module().viewController
         view.navigationController?.pushViewController(viewController, animated: true)
     }
+  
+    func showActivityViewController(with photo: UIImage) {
+        let activityViewController = UIActivityViewController(
+            activityItems: [photo],
+            applicationActivities: nil
+        )
+        view.present(activityViewController, animated: true)
+    }
 }

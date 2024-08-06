@@ -53,7 +53,13 @@ final class ShareViewController: UIViewController {
         сontainerView.locationButtonHandler = { [weak self] in
             self?.output?.locationButtonTapped()
         }
-        сontainerView.photoButtonHandler = { }
+        сontainerView.photoButtonHandler = { [weak self] in
+            self?.output?.photoButtonTapped()
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         navigationBar?.configure(withTitle: "Share")
     }
 }
@@ -73,6 +79,10 @@ extension ShareViewController: ShareViewControllerInput {
     func updateLocation(with viewModel: AddressViewModel) {
         photoLocationContainerView.updadateLocation(with: viewModel)
     }
+    
+    func getImageFromPhotoLocationContainer() -> UIImage? {
+        photoLocationContainerView.renderToImage()
+       }
 }
 
 private extension ShareViewController {
