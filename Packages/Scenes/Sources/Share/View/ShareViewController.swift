@@ -54,17 +54,7 @@ final class ShareViewController: UIViewController {
             self?.output?.locationButtonTapped()
         }
         сontainerView.photoButtonHandler = { }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         navigationBar?.configure(withTitle: "Share")
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationBar?.resetAppearence()
-        
     }
 }
 
