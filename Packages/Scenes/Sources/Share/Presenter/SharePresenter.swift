@@ -57,7 +57,6 @@ extension SharePresenter: ShareViewControllerOutput {
         }
     }
     
-    
     func addPhotoButtonTapped() {
         if interactor.canOpenPhotoLibrary() {
             router.showImagePicker(sourceType: .photoLibrary) { [weak self] photo in
@@ -76,6 +75,13 @@ extension SharePresenter: ShareViewControllerOutput {
                 }
             }
         }
+    }
+    
+    func photoButtonTapped() {
+        guard let image = view.getImageFromPhotoLocationContainer() else {
+            return
+        }
+        router.showActivityViewController(with: image)
     }
 }
 

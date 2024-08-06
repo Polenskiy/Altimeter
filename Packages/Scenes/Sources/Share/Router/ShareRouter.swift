@@ -33,4 +33,12 @@ extension ShareRouter: ShareRouterInput {
     func showImagePicker(sourceType: UIImagePickerController.SourceType, completion: ((UIImage) -> ())?) {
         imagePickerController.showImagePicker(in: view, completion: completion, sourceType: sourceType )
     }
+    
+    func showActivityViewController(with photo: UIImage) {
+        let activityViewController = UIActivityViewController(
+            activityItems: [photo],
+            applicationActivities: nil
+        )
+        view.present(activityViewController, animated: true)
+    }
 }
