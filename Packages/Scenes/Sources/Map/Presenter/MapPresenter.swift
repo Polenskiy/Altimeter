@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 final class MapPresenter: BasePresenter {
     
@@ -33,7 +34,38 @@ extension MapPresenter: MapModuleInput {
 }
 
 // MARK: - MapInteractorOutput
-extension MapPresenter: MapInteractorOutput { }
+extension MapPresenter: MapInteractorOutput {
+    func didUpdate(location: CLLocation) {
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(location) { [weak self] (placmarks, error) in
+            guard let self = self, let placemark = placmarks?.first, error == nil else {
+                return
+            }
+            
+            let address = [
+                placemark.thoroughfare,
+                placemark.locality,
+                placemark.country
+            ].compactMap{ $0 }.joined(separator: ", ")
+            
+            let speed = String(format: "%.2f", location.speed)
+            let altitude = String(format: "%.2f", location.altitude)
+            let latitude = String(format: "%.2f", location.coordinate.latitude)
+            let longitude = String(format: "%.2f", location.coordinate.longitude)
+            
+            view.updateData(
+                with: MapViewController.MapInformationViewModel(
+                    speed: String(speed),
+                    altitude: String(altitude),
+                    latitude: String(latitude),
+                    longitude: String(longitude),
+                    barometer: String(""),
+                    address: String(address)
+                )
+            )
+        }
+    }
+}
 
 // MARK: - MapViewControllerOutput
 extension MapPresenter: MapViewControllerOutput {

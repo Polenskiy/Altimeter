@@ -6,11 +6,13 @@
 //
 
 import DI
+import Services
 
 public final class MapAssembly: DependencyFactory {
     
     private let compassAssembly: CompassAssembly = CompassAssembly.assembly()
     private let shareAssembly: ShareAssembly = ShareAssembly.assembly()
+    private let locationListener: LocationListenerProtocol = LocationListener()
     
     public func module() -> MapModuleInput {
         return unshared(
@@ -54,7 +56,7 @@ public final class MapAssembly: DependencyFactory {
     private func interactor() -> MapInteractor {
         unshared(
             factory: {
-                MapInteractor()
+                MapInteractor(locationListener: locationListener)
             }
         )
     }
