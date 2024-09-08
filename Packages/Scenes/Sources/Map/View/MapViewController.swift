@@ -7,19 +7,22 @@
 
 import UIKit
 
+extension MapViewController {
+    struct MapInformationViewModel {
+        let speed: String
+        let altitude: String
+        let latitude: String
+        let longitude: String
+        let barometer: String
+        let address: String
+    }
+}
+
 final class MapViewController: UIViewController {
     
-    private let mapView: MapView = {
-        let view = MapView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    private let controlsView: ControlsView = {
-        let view = ControlsView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    private let mapView = MapView()
+    private let controlsView = ControlsView()
+    private let mapDataScrollView = MapDataScrollView()
     
     var output: MapViewControllerOutput?
     
@@ -28,7 +31,7 @@ final class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         output?.didTriggerViewReadyEvent()
-        confugureMapView()
+        setup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,11 +49,11 @@ final class MapViewController: UIViewController {
 extension MapViewController: MapViewControllerInput {
     func setupInitialState() {
         mapView.addSubview(controlsView)
+        controlsView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            controlsView.leadingAnchor.constraint(equalTo: mapView.leadingAnchor),
-            controlsView.trailingAnchor.constraint(equalTo: mapView.trailingAnchor),
-            controlsView.topAnchor.constraint(equalTo: mapView.safeAreaLayoutGuide.topAnchor, constant: 32),
-            controlsView.bottomAnchor.constraint(equalTo: mapView.bottomAnchor)
+            controlsView.leadingAnchor.constraint(equalTo: mapView.leadingAnchor, constant: 16),
+            controlsView.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -16),
+            controlsView.topAnchor.constraint(equalTo: mapView.safeAreaLayoutGuide.topAnchor, constant: 44),
         ])
         controlsView.configure(with: [
             .compass { [weak self] _ in
@@ -65,14 +68,37 @@ extension MapViewController: MapViewControllerInput {
         ])
     }
     
+    func updateData(with viewModel: MapInformationViewModel) {
+        mapDataScrollView.updateLocation(with: viewModel)
+    }
+}
+
+private extension MapViewController {
+    func setup() {
+        confugureMapView()
+        configureMapScrollView()
+    }
+    
     func confugureMapView() {
         view.addSubview(mapView)
-            
-            NSLayoutConstraint.activate([
-                mapView.topAnchor.constraint(equalTo: view.topAnchor),
-                mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-                mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            ])
+        mapView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            mapView.topAnchor.constraint(equalTo: view.topAnchor),
+            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        ])
+    }
+    
+    func configureMapScrollView() {
+        view.addSubview(mapDataScrollView)
+        mapDataScrollView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            mapDataScrollView.topAnchor.constraint(equalTo: controlsView.bottomAnchor, constant: 32),
+            mapDataScrollView.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -49),
+            mapDataScrollView.leadingAnchor.constraint(equalTo: mapView.leadingAnchor),
+            mapDataScrollView.trailingAnchor.constraint(equalTo: mapView.trailingAnchor),
+            mapDataScrollView.heightAnchor.constraint(equalToConstant: 227)
+        ])
     }
 }
