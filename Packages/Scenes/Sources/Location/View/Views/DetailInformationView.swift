@@ -26,10 +26,9 @@ final class DetailInformationView: UIView {
         let label = UILabel()
         return label
     }()
-    
-    init(title: String) {
+
+    override init(frame: CGRect) {
         super.init(frame: .zero)
-        titleLabel.text = title
         setup()
     }
     
@@ -70,5 +69,12 @@ private extension DetailInformationView {
             titleLabel.trailingAnchor.constraint(equalTo: horizontalStackView.trailingAnchor),
             titleLabel.topAnchor.constraint(equalTo: horizontalStackView.topAnchor)
         ])
+    }
+}
+
+extension DetailInformationView {
+    func updateTitleAndSubtitle(title: String, subtitle: String) {
+        titleLabel.text = title
+        subtitleLabel.text = subtitle
     }
 }

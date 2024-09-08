@@ -5,12 +5,7 @@ import UIKit
 final class LocationViewController: UIViewController {
     
     private var navigationBar: LocationNavigationBar?
-    
-    private let informationContainerView: InformationContainerView = {
-        let view = InformationContainerView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    private let informationContainerView = InformationContainerView()
     
     var output: LocationViewControllerOutput?
     
@@ -41,6 +36,7 @@ private extension LocationViewController {
     
     func configureInformationContainerView() {
         view.addSubview(informationContainerView)
+        informationContainerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             informationContainerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 118),
             informationContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),

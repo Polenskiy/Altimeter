@@ -18,11 +18,7 @@ final class InformationContainerView: UIView {
         return stack
     }()
     
-    private let inforamtionView: InformationView = {
-        let view = InformationView()
-        view.translatesAutoresizingMaskIntoConstraints = true
-        return view
-    }()
+    private let inforamtionView = InformationView()
     
     private let headerLabel: UILabel = {
         let label = UILabel()
@@ -65,9 +61,8 @@ private extension InformationContainerView {
     
     func configureInforamtionView() {
         verticalStackView.addArrangedSubview(inforamtionView)
-        NSLayoutConstraint.activate([
-        ])
     }
+    
     func configureHeaderLabel() {
         verticalStackView.addArrangedSubview(headerLabel)
         NSLayoutConstraint.activate([

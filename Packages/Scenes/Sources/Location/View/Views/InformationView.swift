@@ -19,47 +19,13 @@ final class InformationView: UIView {
         return stack
     }()
     
-    private let latitude: DetailInformationView = {
-        let view = DetailInformationView(title: "Latitude:")
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    private let longitude: DetailInformationView = {
-        let view = DetailInformationView(title: "Longitude:")
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    private let altitude: DetailInformationView = {
-        let view = DetailInformationView(title: "Altitude:")
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    private let address: DetailInformationView = {
-        let view = DetailInformationView(title: "Address:")
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    private let appleMapeLink: DetailInformationView = {
-        let view = DetailInformationView(title: "Apple Mape Link:")
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    private let googleMapsLink: DetailInformationView = {
-        let view = DetailInformationView(title: "Google Maps Link:")
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    private let referenceApp: DetailInformationView = {
-        let view = DetailInformationView(title: "Reference App:")
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    private lazy var latitude = DetailInformationView()
+    private lazy var longitude = DetailInformationView()
+    private lazy var altitude = DetailInformationView()
+    private lazy var address = DetailInformationView()
+    private lazy var appleMapsLink = DetailInformationView()
+    private lazy var googleMapsLink = DetailInformationView()
+    private lazy var referenceApp = DetailInformationView()
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -89,11 +55,20 @@ private extension InformationView {
     }
     
     func configureInformationView() {
+        
+        latitude.updateTitleAndSubtitle(title: "Latitude: ", subtitle: "")
+        longitude.updateTitleAndSubtitle(title: "Longitude: ", subtitle: "")
+        altitude.updateTitleAndSubtitle(title: "Altitude: ", subtitle: "")
+        address.updateTitleAndSubtitle(title: "Address: ", subtitle: "")
+        appleMapsLink.updateTitleAndSubtitle(title: "Apple Maps Link: ", subtitle: "")
+        googleMapsLink.updateTitleAndSubtitle(title: "Google Maps Link: ", subtitle: "")
+        referenceApp.updateTitleAndSubtitle(title: "Reference App: ", subtitle: "")
+    
         verticalStackView.addArrangedSubview(latitude)
         verticalStackView.addArrangedSubview(longitude)
         verticalStackView.addArrangedSubview(altitude)
         verticalStackView.addArrangedSubview(address)
-        verticalStackView.addArrangedSubview(appleMapeLink)
+        verticalStackView.addArrangedSubview(appleMapsLink)
         verticalStackView.addArrangedSubview(googleMapsLink)
         verticalStackView.addArrangedSubview(referenceApp)
     }
