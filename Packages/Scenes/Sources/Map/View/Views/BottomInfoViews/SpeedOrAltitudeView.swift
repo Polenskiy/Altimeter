@@ -48,7 +48,6 @@ private extension SpeedOrAltitudeView {
     func configureAppearenceView() {
         backgroundColor = .black
         layer.cornerRadius = 16
-        
     }
 }
 

@@ -19,9 +19,9 @@ final class MapBarometerDetailView: UIView {
         return stack
     }()
     
-    private lazy var barometerView = BarometerSuperDetailView(title: "Barometer")
-    private lazy var coordinatesView = BarometerSuperDetailView(title: "Coordinates")
-    private lazy var addressView = BarometerSuperDetailView(title: "Address")
+    private lazy var barometerView = BarometerSuperDetailView()
+    private lazy var coordinatesView = BarometerSuperDetailView()
+    private lazy var addressView = BarometerSuperDetailView()
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -37,7 +37,6 @@ private extension MapBarometerDetailView {
     
     func setup() {
         configureVerticaleStackView()
-    
     }
     
     func configureVerticaleStackView() {
@@ -61,11 +60,21 @@ extension MapBarometerDetailView {
         case .fullMetrics:
             verticalStackView.addArrangedSubview(barometerView)
             verticalStackView.addArrangedSubview(coordinatesView)
-            barometerView.updateSubtitle(viewModel.barometer)
-            coordinatesView.updateSubtitle("\(viewModel.latitude), \(viewModel.longitude)")
+        
+            barometerView.updateTitleAndSubtitle(
+                title: "Barometer",
+                subtitle: viewModel.barometer
+            )
+            coordinatesView.updateTitleAndSubtitle(
+                title: "Coordinates",
+                subtitle:"\(viewModel.latitude), \(viewModel.longitude)"
+            )
         case .baseMetrics:
             verticalStackView.addArrangedSubview(addressView)
-            addressView.updateSubtitle(viewModel.address)
+            addressView.updateTitleAndSubtitle(
+                title: "Address",
+                subtitle: viewModel.address
+            )
         }
     }
 }

@@ -17,13 +17,8 @@ final class BarometerOrAddressView: UIView {
         return stack
     }()
     
-    private let barometerDetailView: MapBarometerDetailView = {
-        let view = MapBarometerDetailView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    private let speedView: SpeedOrAltitudeView = SpeedOrAltitudeView()
+    private let barometerDetailView = MapBarometerDetailView()
+    private let speedView = SpeedOrAltitudeView()
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -56,11 +51,11 @@ private extension BarometerOrAddressView {
     
     func configureBarometerDetailView() {
         horizontalStackView.addArrangedSubview(barometerDetailView)
+        barometerDetailView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             barometerDetailView.widthAnchor.constraint(equalToConstant: 127)
         ])
     }
-    
 }
 
 extension BarometerOrAddressView {

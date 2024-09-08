@@ -13,6 +13,7 @@ final class MapDataScrollView: UIView {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.showsHorizontalScrollIndicator = false
+        scrollView.showsVerticalScrollIndicator = false
         return scrollView
     }()
     
@@ -25,17 +26,8 @@ final class MapDataScrollView: UIView {
         return stackView
     }()
     
-    private let fullMetricsView: MapMetricsView = {
-        let view = MapMetricsView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    private let basicMetricsView: MapMetricsView = {
-        let view = MapMetricsView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    private let fullMetricsView = MapMetricsView()
+    private let basicMetricsView = MapMetricsView()
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -78,6 +70,8 @@ private extension MapDataScrollView {
     func configureMapMetricsView() {
         stackView.addArrangedSubview(fullMetricsView)
         stackView.addArrangedSubview(basicMetricsView)
+        fullMetricsView.translatesAutoresizingMaskIntoConstraints = false
+        basicMetricsView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             fullMetricsView.heightAnchor.constraint(equalToConstant: 227),
             fullMetricsView.widthAnchor.constraint(equalToConstant: 280),
@@ -92,5 +86,4 @@ extension MapDataScrollView {
         fullMetricsView.update(with: viewModel, type: .fullMetrics)
         basicMetricsView.update(with: viewModel, type: .baseMetrics)
     }
-    
 }

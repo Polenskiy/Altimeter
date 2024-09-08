@@ -20,23 +20,9 @@ extension MapViewController {
 
 final class MapViewController: UIViewController {
     
-    private let mapView: MapView = {
-        let view = MapView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    private let controlsView: ControlsView = {
-        let view = ControlsView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    private let mapDataScrollView: MapDataScrollView = {
-        let view = MapDataScrollView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    private let mapView = MapView()
+    private let controlsView = ControlsView()
+    private let mapDataScrollView = MapDataScrollView()
     
     var output: MapViewControllerOutput?
     
@@ -63,6 +49,7 @@ final class MapViewController: UIViewController {
 extension MapViewController: MapViewControllerInput {
     func setupInitialState() {
         mapView.addSubview(controlsView)
+        controlsView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             controlsView.leadingAnchor.constraint(equalTo: mapView.leadingAnchor, constant: 16),
             controlsView.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -16),
@@ -94,18 +81,18 @@ private extension MapViewController {
     
     func confugureMapView() {
         view.addSubview(mapView)
-            
-            NSLayoutConstraint.activate([
-                mapView.topAnchor.constraint(equalTo: view.topAnchor),
-                mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-                mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            ])
+        mapView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            mapView.topAnchor.constraint(equalTo: view.topAnchor),
+            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        ])
     }
     
     func configureMapScrollView() {
         view.addSubview(mapDataScrollView)
-        
+        mapDataScrollView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             mapDataScrollView.topAnchor.constraint(equalTo: controlsView.bottomAnchor, constant: 32),
             mapDataScrollView.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -49),

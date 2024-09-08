@@ -32,9 +32,8 @@ final class BarometerSuperDetailView: UIView {
         return label
     }()
     
-    init(title: String) {
+    override init(frame: CGRect) {
         super.init(frame: .zero)
-        titleLabel.text = title
         setup()
     }
     
@@ -63,7 +62,8 @@ private extension BarometerSuperDetailView {
 }
 
 extension BarometerSuperDetailView {
-    func updateSubtitle(_ subtitle: String) {
+    func updateTitleAndSubtitle(title: String, subtitle: String) {
+        titleLabel.text = title
         subtitleLabel.text = subtitle
     }
 }

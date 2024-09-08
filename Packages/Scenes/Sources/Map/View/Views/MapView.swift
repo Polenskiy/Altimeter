@@ -9,14 +9,8 @@ import MapKit
 
 final class MapView: UIView {
     
-    
-    private let mapView: MKMapView = {
-        let map = MKMapView()
-        map.translatesAutoresizingMaskIntoConstraints = false
-        return map
-    }()
-    
-    
+    private let mapView = MKMapView()
+
     override init(frame: CGRect) {
         super.init(frame: .zero)
         setupMapView()
@@ -26,15 +20,16 @@ final class MapView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
 private extension MapView {
     func setupMapView() {
-          addSubview(mapView)
-          NSLayoutConstraint.activate([
-              mapView.topAnchor.constraint(equalTo: topAnchor),
-              mapView.bottomAnchor.constraint(equalTo: bottomAnchor),
-              mapView.leadingAnchor.constraint(equalTo: leadingAnchor),
-              mapView.trailingAnchor.constraint(equalTo: trailingAnchor),
-          ])
-      }
-
+        addSubview(mapView)
+        mapView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            mapView.topAnchor.constraint(equalTo: topAnchor),
+            mapView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            mapView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            mapView.trailingAnchor.constraint(equalTo: trailingAnchor),
+        ])
+    }
 }

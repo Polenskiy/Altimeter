@@ -4,8 +4,6 @@
 //
 
 protocol MapViewControllerOutput: BaseViewControllerOutput { 
-    
     func onCompassControl()
-    
     func onShareControl()
 }

@@ -26,17 +26,8 @@ final class MapMetricsView: UIView {
         return stackView
     }()
     
-    private let altitudeView: SpeedOrAltitudeView = {
-        let view = SpeedOrAltitudeView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    private let baromterOrAddressView: BarometerOrAddressView = {
-        let view = BarometerOrAddressView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    private let altitudeView = SpeedOrAltitudeView()
+    private let baromterOrAddressView = BarometerOrAddressView()
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -69,6 +60,7 @@ private extension MapMetricsView {
     
     func configureAltitudeView() {
         stackView.addArrangedSubview(altitudeView)
+        altitudeView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             altitudeView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 24),
             altitudeView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -24),
@@ -78,6 +70,7 @@ private extension MapMetricsView {
     
     func configureBarometerorAddressView() {
         stackView.addArrangedSubview(baromterOrAddressView)
+        baromterOrAddressView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             baromterOrAddressView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 24),
             baromterOrAddressView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -24),
