@@ -12,6 +12,7 @@ final class DetailInformationView: UIView {
     private let horizontalStackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
+        stack.spacing = 10
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
@@ -19,11 +20,15 @@ final class DetailInformationView: UIView {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 17, weight: .bold)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private let subtitleLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -41,8 +46,8 @@ private extension DetailInformationView {
     
     func setup() {
         configureHorizontalStackView()
-        configureTitleLabel()
-        configureSubtitleLabel()
+        horizontalStackView.addArrangedSubview(titleLabel)
+        horizontalStackView.addArrangedSubview(subtitleLabel)
     }
     
     func configureHorizontalStackView() {
@@ -54,26 +59,10 @@ private extension DetailInformationView {
             horizontalStackView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
     }
-    
-    func configureTitleLabel() {
-        horizontalStackView.addArrangedSubview(titleLabel)
-        NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: horizontalStackView.leadingAnchor),
-            titleLabel.topAnchor.constraint(equalTo: horizontalStackView.topAnchor)
-        ])
-    }
-    
-    func configureSubtitleLabel() {
-        horizontalStackView.addArrangedSubview(subtitleLabel)
-        NSLayoutConstraint.activate([
-            titleLabel.trailingAnchor.constraint(equalTo: horizontalStackView.trailingAnchor),
-            titleLabel.topAnchor.constraint(equalTo: horizontalStackView.topAnchor)
-        ])
-    }
 }
 
 extension DetailInformationView {
-    func updateTitleAndSubtitle(title: String, subtitle: String) {
+    func update(title: String, subtitle: String) {
         titleLabel.text = title
         subtitleLabel.text = subtitle
     }

@@ -7,6 +7,18 @@
 
 import UIKit
 
+extension InformationContainerView {
+    struct InformationViewModel {
+        let latitude: String
+        let longitude: String
+        let altitude: String
+        let address: String
+        let appleMapLinks: String
+        let googleMapsLink: String
+        let referenceApp: String
+    }
+}
+
 final class InformationContainerView: UIView {
     
     private let verticalStackView: UIStackView = {
@@ -73,6 +85,12 @@ private extension InformationContainerView {
     func configureAppearenceView() {
         backgroundColor = UIColor(named: "lightBlue")
         layer.cornerRadius = 32
+    }
+}
+
+extension InformationContainerView {
+    func update(with viewModel: InformationViewModel) {
+        inforamtionView.update(with: viewModel)
     }
 }
 

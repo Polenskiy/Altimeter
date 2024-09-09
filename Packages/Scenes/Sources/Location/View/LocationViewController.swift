@@ -26,6 +26,11 @@ extension LocationViewController: LocationViewControllerInput {
     func setupInitialState() {
         view.backgroundColor = UIColor(named: "darkBlue")
     }
+    
+    func updateData(with viewModel: InformationContainerView.InformationViewModel) {
+        informationContainerView.update(with: viewModel)
+    }
+    
 }
 
 private extension LocationViewController {

@@ -55,15 +55,6 @@ private extension InformationView {
     }
     
     func configureInformationView() {
-        
-        latitude.updateTitleAndSubtitle(title: "Latitude: ", subtitle: "")
-        longitude.updateTitleAndSubtitle(title: "Longitude: ", subtitle: "")
-        altitude.updateTitleAndSubtitle(title: "Altitude: ", subtitle: "")
-        address.updateTitleAndSubtitle(title: "Address: ", subtitle: "")
-        appleMapsLink.updateTitleAndSubtitle(title: "Apple Maps Link: ", subtitle: "")
-        googleMapsLink.updateTitleAndSubtitle(title: "Google Maps Link: ", subtitle: "")
-        referenceApp.updateTitleAndSubtitle(title: "Reference App: ", subtitle: "")
-    
         verticalStackView.addArrangedSubview(latitude)
         verticalStackView.addArrangedSubview(longitude)
         verticalStackView.addArrangedSubview(altitude)
@@ -71,5 +62,17 @@ private extension InformationView {
         verticalStackView.addArrangedSubview(appleMapsLink)
         verticalStackView.addArrangedSubview(googleMapsLink)
         verticalStackView.addArrangedSubview(referenceApp)
+    }
+}
+
+extension InformationView {
+    func update(with viewModel: InformationContainerView.InformationViewModel) {
+        latitude.update(title: "Latitude: ", subtitle: viewModel.latitude)
+        longitude.update(title: "Longitude: ", subtitle: viewModel.longitude)
+        altitude.update(title: "Altitude: ", subtitle: viewModel.altitude)
+        address.update(title: "Address: ", subtitle: viewModel.address)
+        appleMapsLink.update(title: "Apple Maps Link: ", subtitle: viewModel.appleMapLinks)
+        googleMapsLink.update(title: "Google Maps Link: ", subtitle: viewModel.googleMapsLink)
+        referenceApp.update(title: "Reference App: ", subtitle: viewModel.referenceApp)
     }
 }
