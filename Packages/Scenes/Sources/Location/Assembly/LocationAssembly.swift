@@ -1,7 +1,10 @@
 
 import DI
+import Services
 
 public final class LocationAssembly: DependencyFactory {
+    
+    private let locationListener: LocationListenerProtocol = LocationListener()
     
     func module() -> LocationModuleInput {
         return unshared(
@@ -45,7 +48,7 @@ public final class LocationAssembly: DependencyFactory {
     private func interactor() -> LocationInteractor {
         unshared(
             factory: {
-                LocationInteractor()
+                LocationInteractor(locationListener: locationListener)
             }
         )
     }

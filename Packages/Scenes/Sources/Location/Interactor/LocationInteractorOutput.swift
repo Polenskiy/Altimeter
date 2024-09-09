@@ -1,3 +1,6 @@
 
+import CoreLocation
 
-protocol LocationInteractorOutput: AnyObject { }
+protocol LocationInteractorOutput: AnyObject {
+    func didUpdate(location: CLLocation)
+}
