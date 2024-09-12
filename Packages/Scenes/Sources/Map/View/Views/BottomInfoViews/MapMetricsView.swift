@@ -86,12 +86,27 @@ private extension MapMetricsView {
 }
 
 extension MapMetricsView {
+    
+    //TODO: Сделать два метода для вывода
+    func updateWithBarometer(viewModelBarometer: MapViewController.InformationViewModel.Barometer) {
+        baromterOrAddressView
+    }
+    
+    func updateWithLocation(viewModelLocation: MapViewController.InformationViewModel.Location) {
+        
+    }
+    
     func update(
-        with viewModel: MapViewController.MapInformationViewModel,
-        type: MapMetricsType
+        viewModelBarometer: MapViewController.InformationViewModel.Barometer,
+        viewModelLocation: MapViewController.InformationViewModel.Location,
+        type: MapMetricsView.MapMetricsType
     ) {
-        baromterOrAddressView.update(with: viewModel, type: type)
-        altitudeView.configure(with: "\(viewModel.altitude) m")
+        baromterOrAddressView.update(
+            viewModelBarometer: viewModelBarometer,
+            viewModelLocation: viewModelLocation,
+            type: type
+        )
+        altitudeView.configure(with: "\(viewModelLocation.altitude) m")
     }
 }
 

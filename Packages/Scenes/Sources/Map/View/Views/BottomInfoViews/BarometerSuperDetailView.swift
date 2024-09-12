@@ -62,7 +62,7 @@ private extension BarometerSuperDetailView {
 }
 
 extension BarometerSuperDetailView {
-    func updateTitleAndSubtitle(title: String, subtitle: String) {
+    func update(title: String, subtitle: String) {
         titleLabel.text = title
         subtitleLabel.text = subtitle
     }

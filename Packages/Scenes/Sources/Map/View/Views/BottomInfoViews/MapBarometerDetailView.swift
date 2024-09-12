@@ -52,28 +52,42 @@ private extension MapBarometerDetailView {
 
 extension MapBarometerDetailView {
     
+    //TODO: Сделать два метода для вывода данных
+    
+//    func update(
+//        viewModelBarometer: MapViewController.InformationViewModel.Barometer,
+//        type: MapMetricsView.MapMetricsType) {
+//        switch type {
+//        case .fullMetrics:
+//            barometerView.update(title: "barometer", subtitle: viewModelBarometer.barometer)
+//        case .baseMetrics:
+//            
+//        }
+//    }
+    
     func update(
-        with viewModel: MapViewController.MapInformationViewModel,
+        viewModelLocation: MapViewController.InformationViewModel.Location,
+        viewModelBarometer: MapViewController.InformationViewModel.Barometer,
         type: MapMetricsView.MapMetricsType
     ) {
         switch type {
         case .fullMetrics:
             verticalStackView.addArrangedSubview(barometerView)
             verticalStackView.addArrangedSubview(coordinatesView)
-        
-            barometerView.updateTitleAndSubtitle(
+            
+            barometerView.update(
                 title: "Barometer",
-                subtitle: viewModel.barometer
+                subtitle: viewModelBarometer.barometer
             )
-            coordinatesView.updateTitleAndSubtitle(
+            coordinatesView.update(
                 title: "Coordinates",
-                subtitle:"\(viewModel.latitude), \(viewModel.longitude)"
+                subtitle:"\(viewModelLocation.latitude), \(viewModelLocation.longitude)"
             )
         case .baseMetrics:
             verticalStackView.addArrangedSubview(addressView)
-            addressView.updateTitleAndSubtitle(
+            addressView.update(
                 title: "Address",
-                subtitle: viewModel.address
+                subtitle: viewModelLocation.address
             )
         }
     }

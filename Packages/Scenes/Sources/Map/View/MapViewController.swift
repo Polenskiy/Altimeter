@@ -8,13 +8,18 @@
 import UIKit
 
 extension MapViewController {
-    struct MapInformationViewModel {
-        let speed: String
-        let altitude: String
-        let latitude: String
-        let longitude: String
-        let barometer: String
-        let address: String
+    struct InformationViewModel {
+        struct Location {
+            let speed: String
+            let altitude: String
+            let latitude: String
+            let longitude: String
+            let address: String
+        }
+        
+        struct Barometer {
+            let barometer: String
+        }
     }
 }
 
@@ -47,6 +52,7 @@ final class MapViewController: UIViewController {
 
 // MARK: - MapViewControllerInput
 extension MapViewController: MapViewControllerInput {
+
     func setupInitialState() {
         mapView.addSubview(controlsView)
         controlsView.translatesAutoresizingMaskIntoConstraints = false
@@ -67,10 +73,22 @@ extension MapViewController: MapViewControllerInput {
             .position { _ in }
         ])
     }
-    
-    func updateData(with viewModel: MapInformationViewModel) {
-        mapDataScrollView.updateLocation(with: viewModel)
+
+    //TODO: сделать два метода для обновления данных
+    func updateLocation(viewModelLocation: InformationViewModel.Location) {
+        mapDataScrollView.update(viewModelLocation: viewModelLocation)
     }
+    
+    func updateBarometer( viewModelBarometer: InformationViewModel.Barometer) {
+        mapDataScrollView.update(viewModelBarometer: viewModelBarometer)
+    }
+    
+//    func updateData(
+//        viewModelBarometer: InformationViewModel.Barometer,
+//        viewModelLocation: InformationViewModel.Location
+//    ) {
+//        mapDataScrollView.updateLocation(viewModelBarometer: viewModelBarometer, viewModelLocation: viewModelLocation)
+//    }
 }
 
 private extension MapViewController {

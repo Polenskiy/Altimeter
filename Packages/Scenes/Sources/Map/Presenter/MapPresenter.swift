@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreLocation
+import CoreMotion
 
 final class MapPresenter: BasePresenter {
     
@@ -35,6 +36,38 @@ extension MapPresenter: MapModuleInput {
 
 // MARK: - MapInteractorOutput
 extension MapPresenter: MapInteractorOutput {
+    
+//    func didUpdateLocation(location: CLLocation, barometer: CMAltitudeData) {
+//        let geocoder = CLGeocoder()
+//        geocoder.reverseGeocodeLocation(location) { [weak self] (placmarks, error) in
+//            guard let self = self, let placemark = placmarks?.first, error == nil else {
+//                return
+//            }
+//            
+//            let address = [
+//                placemark.thoroughfare,
+//                placemark.locality,
+//                placemark.country
+//            ].compactMap{ $0 }.joined(separator: ", ")
+//            
+//            let speed = String(format: "%.2f", location.speed)
+//            let altitude = String(format: "%.2f", location.altitude)
+//            let latitude = String(format: "%.2f", location.coordinate.latitude)
+//            let longitude = String(format: "%.2f", location.coordinate.longitude)
+//            let barometer = String(format: "%.2f", barometer)
+//            
+//            view.updateData(
+//                viewModelBarometer: MapViewController.InformationViewModel.Barometer(barometer: barometer),
+//                viewModelLocation: MapViewController.InformationViewModel.Location(
+//                    speed: speed,
+//                    altitude: altitude,
+//                    latitude: latitude,
+//                    longitude: longitude,
+//                    address: address)
+//            )
+//        }
+//    }
+    // TODO: Сделать два метода для вывода информации
     func didUpdate(location: CLLocation) {
         let geocoder = CLGeocoder()
         geocoder.reverseGeocodeLocation(location) { [weak self] (placmarks, error) in
@@ -53,17 +86,19 @@ extension MapPresenter: MapInteractorOutput {
             let latitude = String(format: "%.2f", location.coordinate.latitude)
             let longitude = String(format: "%.2f", location.coordinate.longitude)
             
-            view.updateData(
-                with: MapViewController.MapInformationViewModel(
-                    speed: String(speed),
-                    altitude: String(altitude),
-                    latitude: String(latitude),
-                    longitude: String(longitude),
-                    barometer: String(""),
-                    address: String(address)
-                )
+            view.updateLocation(viewModelLocation: MapViewController.InformationViewModel.Location(
+                speed: speed,
+                altitude: altitude,
+                latitude: latitude,
+                longitude: longitude,
+                address: address)
             )
         }
+    }
+
+    func didUpdate(barometer: CMAltitudeData) {
+        let barometer = String(format: "%.2f", barometer)
+        view.updateBarometer(viewModelBarometer: MapViewController.InformationViewModel.Barometer(barometer: barometer))
     }
 }
 
