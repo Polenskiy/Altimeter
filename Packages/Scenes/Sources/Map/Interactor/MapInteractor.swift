@@ -15,20 +15,6 @@ final class MapInteractor {
         self.locationListener = locationListener
         self.barometerListener = barometerListener
         
-//        locationListener.startUpdatingLocation { location in
-//            guard let location = location else {
-//                return
-//            }
-//            
-//            barometerListener.startUpdatingLocation { data, error in
-//                guard let data = data, error == nil else {
-//                    return
-//                }
-//                self.output?.didUpdateLocation(location: location, barometer: data)
-//            }
-//        }
-        
-        //TODO: - сделать два раздельных метода обновления данных 
         locationListener.startUpdatingLocation { location in
             guard let location = location else {
                 return
@@ -36,10 +22,11 @@ final class MapInteractor {
             self.output?.didUpdate(location: location)
         }
         
-        barometerListener.startUpdatingLocation { data, error in
+        barometerListener.startUpdatingBarometer { data, error in
             guard let data = data, error == nil else {
                 return
             }
+            //Не вызывается
             self.output?.didUpdate(barometer: data)
         }
     }

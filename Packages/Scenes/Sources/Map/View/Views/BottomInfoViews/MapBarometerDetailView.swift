@@ -52,42 +52,45 @@ private extension MapBarometerDetailView {
 
 extension MapBarometerDetailView {
     
-    //TODO: Сделать два метода для вывода данных
-    
-//    func update(
-//        viewModelBarometer: MapViewController.InformationViewModel.Barometer,
-//        type: MapMetricsView.MapMetricsType) {
-//        switch type {
-//        case .fullMetrics:
-//            barometerView.update(title: "barometer", subtitle: viewModelBarometer.barometer)
-//        case .baseMetrics:
-//            
-//        }
-//    }
-    
-    func update(
+    func updateAddress(
         viewModelLocation: MapViewController.InformationViewModel.Location,
-        viewModelBarometer: MapViewController.InformationViewModel.Barometer,
-        type: MapMetricsView.MapMetricsType
+        type: MapMetricsView.MapMetricsType.AddressType
     ) {
         switch type {
-        case .fullMetrics:
-            verticalStackView.addArrangedSubview(barometerView)
-            verticalStackView.addArrangedSubview(coordinatesView)
-            
-            barometerView.update(
-                title: "Barometer",
-                subtitle: viewModelBarometer.barometer
-            )
-            coordinatesView.update(
-                title: "Coordinates",
-                subtitle:"\(viewModelLocation.latitude), \(viewModelLocation.longitude)"
-            )
-        case .baseMetrics:
+        case .addressMetrics:
             verticalStackView.addArrangedSubview(addressView)
             addressView.update(
                 title: "Address",
                 subtitle: viewModelLocation.address
+            )
+        }
+    }
+    
+    func updateCoordinates(
+        viewModelLocation: MapViewController.InformationViewModel.Location,
+        type: MapMetricsView.MapMetricsType.CoordinatesType
+    ) {
+        switch type {
+        case .coordintesMetrics:
+            verticalStackView.addArrangedSubview(coordinatesView)
+            coordinatesView.update(
+                title: "Coordinates",
+                subtitle:"\(viewModelLocation.latitude), \(viewModelLocation.longitude)"
+            )
+        }
+    }
+    
+    func updateBarometer(
+        viewModelBarometer: MapViewController.InformationViewModel.Barometer,
+        type: MapMetricsView.MapMetricsType.BarometerMetricsType
+    ) {
+        switch type {
+        case .barometerMetrics:
+            verticalStackView.addArrangedSubview(barometerView)
+            //не вызывается
+            barometerView.update(
+                title: "Barometer",
+                subtitle: viewModelBarometer.barometer
             )
         }
     }

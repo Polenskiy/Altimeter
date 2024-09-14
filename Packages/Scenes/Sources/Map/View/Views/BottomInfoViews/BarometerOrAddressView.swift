@@ -59,16 +59,39 @@ private extension BarometerOrAddressView {
 }
 
 extension BarometerOrAddressView {
-    func update(
+    func updateBarometer(
         viewModelBarometer: MapViewController.InformationViewModel.Barometer,
-        viewModelLocation: MapViewController.InformationViewModel.Location,
-        type: MapMetricsView.MapMetricsType
+        type: MapMetricsView.MapMetricsType.BarometerMetricsType
     ) {
-        barometerDetailView.update(
+        barometerDetailView.updateBarometer(
             viewModelBarometer: viewModelBarometer,
+            type: type
+        )
+    }
+    
+    func updateAddress(
+        viewModelLocation: MapViewController.InformationViewModel.Location,
+        type: MapMetricsView.MapMetricsType.AddressType
+    ) {
+        barometerDetailView.updateAddress(
             viewModelLocation: viewModelLocation,
             type: type
         )
+    }
+    
+    func updateCoordinates(
+        viewModelLocation: MapViewController.InformationViewModel.Location,
+        type: MapMetricsView.MapMetricsType.CoordinatesType
+    ) {
+        barometerDetailView.updateCoordinates(
+            viewModelLocation: viewModelLocation,
+            type: type
+        )
+    }
+    
+    func updateSpeed(
+        viewModelLocation: MapViewController.InformationViewModel.Location
+    ) {
         speedView.configure(with: "\(viewModelLocation.speed) m/s")
     }
 }

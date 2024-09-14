@@ -8,7 +8,7 @@
 import CoreMotion
 
 public protocol BarometerListenerProtocol {
-    func startUpdatingLocation(handler: @escaping ((CMAltitudeData?, Error?) -> Void))
+    func startUpdatingBarometer(handler: @escaping ((CMAltitudeData?, Error?) -> Void))
     func stopUpdatingHandler()
 }
 
@@ -16,9 +16,10 @@ public final class BarometerListener: NSObject, BarometerListenerProtocol {
     private let altimeter = CMAltimeter()
     private var barometerHandler: ((CMAltitudeData?, Error?) -> ())?
     
-    public func startUpdatingLocation(handler: @escaping ((CMAltitudeData?, Error?) -> Void)) {
+    public func startUpdatingBarometer(handler: @escaping ((CMAltitudeData?, Error?) -> Void)) {
         self.barometerHandler = handler
         
+        //Если тестировать на симуляторе, то возвращает false
         if CMAltimeter.isRelativeAltitudeAvailable() {
             altimeter.startRelativeAltitudeUpdates(to: OperationQueue.main) { [weak self] data, error in
                 self?.barometerHandler?(data, error)

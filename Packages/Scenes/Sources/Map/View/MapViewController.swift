@@ -74,21 +74,15 @@ extension MapViewController: MapViewControllerInput {
         ])
     }
 
-    //TODO: сделать два метода для обновления данных
     func updateLocation(viewModelLocation: InformationViewModel.Location) {
-        mapDataScrollView.update(viewModelLocation: viewModelLocation)
+        mapDataScrollView.updateFull(viewModelLocation: viewModelLocation)
+        mapDataScrollView.updateBase(viewModelLocation: viewModelLocation)
     }
     
-    func updateBarometer( viewModelBarometer: InformationViewModel.Barometer) {
-        mapDataScrollView.update(viewModelBarometer: viewModelBarometer)
+    //не вызывается
+    func updateBarometer(viewModelBarometer: InformationViewModel.Barometer) {
+        mapDataScrollView.updateBarometer(viewModelBarometer: viewModelBarometer)
     }
-    
-//    func updateData(
-//        viewModelBarometer: InformationViewModel.Barometer,
-//        viewModelLocation: InformationViewModel.Location
-//    ) {
-//        mapDataScrollView.updateLocation(viewModelBarometer: viewModelBarometer, viewModelLocation: viewModelLocation)
-//    }
 }
 
 private extension MapViewController {

@@ -82,29 +82,26 @@ private extension MapDataScrollView {
 }
 
 extension MapDataScrollView {
-//    func updateLocation(
-//        viewModelBarometer: MapViewController.InformationViewModel.Barometer,
-//        viewModelLocation: MapViewController.InformationViewModel.Location
-//    ) {
-//        fullMetricsView.update(
-//            viewModelBarometer: viewModelBarometer,
-//            viewModelLocation: viewModelLocation,
-//            type: .fullMetrics
-//        )
-//        basicMetricsView.update(
-//            viewModelBarometer: viewModelBarometer,
-//            viewModelLocation: viewModelLocation,
-//            type: .baseMetrics
-//        )
-//    }
-    
-    //TODO: Сделать два метода для вывода информации
-    func update(viewModelLocation:  MapViewController.InformationViewModel.Location) {
-        
+
+    func updateFull(
+        viewModelLocation:  MapViewController.InformationViewModel.Location
+    ) {
+        fullMetricsView.updateCoordinates(viewModel: viewModelLocation)
+        fullMetricsView.updateSpeed(viewModel: viewModelLocation)
+        fullMetricsView.updateAltitude(viewModel: viewModelLocation)
     }
     
-    func update(viewModelBarometer: MapViewController.InformationViewModel.Barometer) {
-        
+    func updateBarometer(
+        viewModelBarometer: MapViewController.InformationViewModel.Barometer
+    ) {
+        fullMetricsView.updateBarometer(viewModelBarometer: viewModelBarometer)
     }
     
+    func updateBase(
+        viewModelLocation:  MapViewController.InformationViewModel.Location
+    ) {
+        basicMetricsView.updateAddress(viewModel: viewModelLocation)
+        basicMetricsView.updateSpeed(viewModel: viewModelLocation)
+        basicMetricsView.updateAltitude(viewModel: viewModelLocation)
+    }
 }

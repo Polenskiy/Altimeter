@@ -8,9 +8,18 @@
 import UIKit
 
 extension MapMetricsView {
-    enum MapMetricsType {
-        case fullMetrics
-        case baseMetrics
+    struct MapMetricsType {
+        enum  CoordinatesType {
+            case coordintesMetrics
+        }
+        
+        enum AddressType {
+            case addressMetrics
+        }
+        
+        enum BarometerMetricsType {
+            case barometerMetrics
+        }
     }
 }
 
@@ -87,26 +96,25 @@ private extension MapMetricsView {
 
 extension MapMetricsView {
     
-    //TODO: Сделать два метода для вывода
-    func updateWithBarometer(viewModelBarometer: MapViewController.InformationViewModel.Barometer) {
-        baromterOrAddressView
+    func updateBarometer(viewModelBarometer: MapViewController.InformationViewModel.Barometer) {
+        baromterOrAddressView.updateBarometer(viewModelBarometer: viewModelBarometer, type: .barometerMetrics)
     }
     
-    func updateWithLocation(viewModelLocation: MapViewController.InformationViewModel.Location) {
-        
+    func updateAddress(viewModel: MapViewController.InformationViewModel.Location) {
+        baromterOrAddressView.updateAddress(viewModelLocation: viewModel, type: .addressMetrics)
     }
     
-    func update(
-        viewModelBarometer: MapViewController.InformationViewModel.Barometer,
-        viewModelLocation: MapViewController.InformationViewModel.Location,
-        type: MapMetricsView.MapMetricsType
-    ) {
-        baromterOrAddressView.update(
-            viewModelBarometer: viewModelBarometer,
-            viewModelLocation: viewModelLocation,
-            type: type
-        )
-        altitudeView.configure(with: "\(viewModelLocation.altitude) m")
+    func updateCoordinates(viewModel: MapViewController.InformationViewModel.Location) {
+        baromterOrAddressView.updateCoordinates(viewModelLocation: viewModel, type: .coordintesMetrics)
+    }
+    
+    func updateSpeed(viewModel: MapViewController.InformationViewModel.Location) {
+        baromterOrAddressView.updateSpeed(viewModelLocation: viewModel)
+    }
+    
+    func updateAltitude(viewModel: MapViewController.InformationViewModel.Location) {
+        altitudeView.configure(with: "\(viewModel.altitude) m")
     }
 }
+
 
