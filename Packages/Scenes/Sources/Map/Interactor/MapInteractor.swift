@@ -5,18 +5,23 @@
 //	Where my children
 //
 import Services
+import CoreLocation
 
 final class MapInteractor {
     
     private let locationListener: LocationListenerProtocol
     
+    var location: CLLocation?
+    
     init(locationListener: LocationListenerProtocol) {
         self.locationListener = locationListener
-        locationListener.startUpdatingLocation { location in
+        locationListener.startUpdatingLocation { [weak self] location in
             guard let location = location else {
                 return
             }
-            self.output?.didUpdate(location: location)
+            self?.location = location
+            self?.didUpdateRegion(location: location)
+            self?.output?.didUpdate(location: location)
         }
     }
     
@@ -26,4 +31,15 @@ final class MapInteractor {
 }
 
 // MARK: - MapInteractorInput
-extension MapInteractor: MapInteractorInput { }
+extension MapInteractor: MapInteractorInput { 
+    func updateUserPosition() {
+        guard let location = location else {
+            return
+        }
+        self.output?.didUpdateRegion(location: location)
+    }
+    
+    func didUpdateRegion(location: CLLocation) {
+        self.output?.didUpdateRegion(location: location)
+    }
+}

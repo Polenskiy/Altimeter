@@ -19,6 +19,12 @@ final class MapView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func update(with location: CLLocation) {
+        let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 5000, longitudinalMeters: 5000)
+        mapView.setRegion(region, animated: true)
+        mapView.showsUserLocation = true
+    }
 }
 
 private extension MapView {

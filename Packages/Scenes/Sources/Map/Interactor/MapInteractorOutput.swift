@@ -8,4 +8,5 @@ import CoreLocation
 
 protocol MapInteractorOutput: AnyObject {
     func didUpdate(location: CLLocation)
+    func didUpdateRegion(location: CLLocation)
 }
