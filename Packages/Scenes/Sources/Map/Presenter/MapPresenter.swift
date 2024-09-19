@@ -65,6 +65,10 @@ extension MapPresenter: MapInteractorOutput {
             )
         }
     }
+    
+    func didUpdateRegion(location: CLLocation) {
+        view.setUserPosition(with: location)
+    }
 }
 
 // MARK: - MapViewControllerOutput
@@ -74,5 +78,9 @@ extension MapPresenter: MapViewControllerOutput {
     }
     func onShareControl() {
         router.navigateToShareView()
+    }
+    
+    func onPositionControl() {
+        interactor.setUserPosition()
     }
 }

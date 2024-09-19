@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MapKit
 
 extension MapViewController {
     struct MapInformationViewModel {
@@ -64,12 +65,18 @@ extension MapViewController: MapViewControllerInput {
             },
             .layers { _ in },
             .menu { _ in },
-            .position { _ in }
+            .position { [weak self] _ in
+                self?.output?.onPositionControl()
+            }
         ])
     }
     
     func updateData(with viewModel: MapInformationViewModel) {
-        mapDataScrollView.updateLocation(with: viewModel)
+        mapDataScrollView.updateData(with: viewModel)
+    }
+    
+    func setUserPosition(with location: CLLocation) {
+        mapView.update(with: location)
     }
 }
 

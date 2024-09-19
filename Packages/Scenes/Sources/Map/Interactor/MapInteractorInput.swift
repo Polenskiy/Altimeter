@@ -5,4 +5,6 @@
 //	Where my children
 //
 
-protocol MapInteractorInput: AnyObject { }
+protocol MapInteractorInput: AnyObject {
+    func setUserPosition()
+}
