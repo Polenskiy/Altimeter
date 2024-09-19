@@ -306,11 +306,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = JR55679LT2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Altimeter/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow access.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Grant Location permission";
+				INFOPLIST_KEY_NSMotionUsageDescription = "Приложение использует данные о движении";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow access.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -336,11 +337,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = JR55679LT2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Altimeter/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow access.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Grant Location permission";
+				INFOPLIST_KEY_NSMotionUsageDescription = "Приложение использует данные о движении";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow access.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;

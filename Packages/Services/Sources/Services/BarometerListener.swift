@@ -14,15 +14,11 @@ public protocol BarometerListenerProtocol {
 
 public final class BarometerListener: NSObject, BarometerListenerProtocol {
     private let altimeter = CMAltimeter()
-    private var barometerHandler: ((CMAltitudeData?, Error?) -> ())?
     
     public func startUpdatingBarometer(handler: @escaping ((CMAltitudeData?, Error?) -> Void)) {
-        self.barometerHandler = handler
-        
-        //Если тестировать на симуляторе, то возвращает false
         if CMAltimeter.isRelativeAltitudeAvailable() {
-            altimeter.startRelativeAltitudeUpdates(to: OperationQueue.main) { [weak self] data, error in
-                self?.barometerHandler?(data, error)
+            altimeter.startRelativeAltitudeUpdates(to: OperationQueue.main) { data, error in
+                handler(data, error)
             }
         } else {
             
@@ -31,6 +27,6 @@ public final class BarometerListener: NSObject, BarometerListenerProtocol {
     
     public func stopUpdatingHandler() {
         altimeter.stopRelativeAltitudeUpdates()
-        self.barometerHandler = nil
+//        self.barometerHandler = nil
     }
 }

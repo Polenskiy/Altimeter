@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - InformationViewModel
 extension MapViewController {
     struct InformationViewModel {
         struct Location {
@@ -22,7 +23,7 @@ extension MapViewController {
         }
     }
 }
-
+// MARK: - MapViewController
 final class MapViewController: UIViewController {
     
     private let mapView = MapView()
@@ -36,7 +37,6 @@ final class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         output?.didTriggerViewReadyEvent()
-        setup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,6 +54,36 @@ final class MapViewController: UIViewController {
 extension MapViewController: MapViewControllerInput {
 
     func setupInitialState() {
+        configureControlsView()
+        confugureMapView()
+        configureMapScrollView()
+    }
+
+    func updateLocation(viewModelLocation: InformationViewModel.Location) {
+        mapDataScrollView.updateFull(viewModelLocation: viewModelLocation)
+        mapDataScrollView.updateBase(viewModelLocation: viewModelLocation)
+    }
+    
+    //не вызывается
+    func updateBarometer(viewModelBarometer: InformationViewModel.Barometer) {
+        mapDataScrollView.updateBarometer(viewModelBarometer: viewModelBarometer)
+    }
+}
+
+private extension MapViewController {
+    
+    func confugureMapView() {
+        view.addSubview(mapView)
+        mapView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            mapView.topAnchor.constraint(equalTo: view.topAnchor),
+            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        ])
+    }
+    
+    func configureControlsView() {
         mapView.addSubview(controlsView)
         controlsView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -71,34 +101,6 @@ extension MapViewController: MapViewControllerInput {
             .layers { _ in },
             .menu { _ in },
             .position { _ in }
-        ])
-    }
-
-    func updateLocation(viewModelLocation: InformationViewModel.Location) {
-        mapDataScrollView.updateFull(viewModelLocation: viewModelLocation)
-        mapDataScrollView.updateBase(viewModelLocation: viewModelLocation)
-    }
-    
-    //не вызывается
-    func updateBarometer(viewModelBarometer: InformationViewModel.Barometer) {
-        mapDataScrollView.updateBarometer(viewModelBarometer: viewModelBarometer)
-    }
-}
-
-private extension MapViewController {
-    func setup() {
-        confugureMapView()
-        configureMapScrollView()
-    }
-    
-    func confugureMapView() {
-        view.addSubview(mapView)
-        mapView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            mapView.topAnchor.constraint(equalTo: view.topAnchor),
-            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
     }
     

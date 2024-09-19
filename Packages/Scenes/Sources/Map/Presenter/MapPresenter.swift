@@ -66,8 +66,7 @@ extension MapPresenter: MapInteractorOutput {
     }
 
     func didUpdate(barometer: CMAltitudeData) {
-        let barometerData = String(format: "%.2f", barometer)
-        //не вызывается
+        let barometerData = String(format: "%.2f", barometer.pressure.doubleValue)
         view.updateBarometer(
             viewModelBarometer: MapViewController.InformationViewModel.Barometer(
                 barometer: barometerData
