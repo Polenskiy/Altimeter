@@ -67,7 +67,7 @@ extension MapPresenter: MapInteractorOutput {
     }
     
     func didUpdateRegion(location: CLLocation) {
-        view.updateData(with: location)
+        view.setUserPosition(with: location)
     }
 }
 
@@ -81,6 +81,6 @@ extension MapPresenter: MapViewControllerOutput {
     }
     
     func onPositionControl() {
-        interactor.updateUserPosition()
+        interactor.setUserPosition()
     }
 }

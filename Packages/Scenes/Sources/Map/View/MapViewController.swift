@@ -72,10 +72,10 @@ extension MapViewController: MapViewControllerInput {
     }
     
     func updateData(with viewModel: MapInformationViewModel) {
-        mapDataScrollView.updateLocation(with: viewModel)
+        mapDataScrollView.updateData(with: viewModel)
     }
     
-    func updateData(with location: CLLocation) {
+    func setUserPosition(with location: CLLocation) {
         mapView.update(with: location)
     }
 }

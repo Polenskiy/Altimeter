@@ -6,5 +6,5 @@
 //
 
 protocol MapInteractorInput: AnyObject {
-    func updateUserPosition()
+    func setUserPosition()
 }

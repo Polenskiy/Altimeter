@@ -20,7 +20,7 @@ final class MapInteractor {
                 return
             }
             self?.location = location
-            self?.didUpdateRegion(location: location)
+            self?.output?.didUpdateRegion(location: location)
             self?.output?.didUpdate(location: location)
         }
     }
@@ -32,14 +32,10 @@ final class MapInteractor {
 
 // MARK: - MapInteractorInput
 extension MapInteractor: MapInteractorInput { 
-    func updateUserPosition() {
+    func setUserPosition() {
         guard let location = location else {
             return
         }
-        self.output?.didUpdateRegion(location: location)
-    }
-    
-    func didUpdateRegion(location: CLLocation) {
         self.output?.didUpdateRegion(location: location)
     }
 }

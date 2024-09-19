@@ -8,5 +8,5 @@ import CoreLocation
 
 protocol MapViewControllerInput: BaseViewControllerInput {
     func updateData(with viewModel: MapViewController.MapInformationViewModel)
-    func updateData(with location: CLLocation)
+    func setUserPosition(with location: CLLocation)
 }
