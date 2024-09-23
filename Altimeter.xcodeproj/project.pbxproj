@@ -311,7 +311,7 @@
 				INFOPLIST_FILE = Altimeter/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow access.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Grant Location permission";
-				INFOPLIST_KEY_NSMotionUsageDescription = "Приложение использует данные о движении";
+				INFOPLIST_KEY_NSMotionUsageDescription = "The app uses motion data";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow access.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -342,7 +342,7 @@
 				INFOPLIST_FILE = Altimeter/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow access.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Grant Location permission";
-				INFOPLIST_KEY_NSMotionUsageDescription = "Приложение использует данные о движении";
+				INFOPLIST_KEY_NSMotionUsageDescription = "The app uses motion data";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow access.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;

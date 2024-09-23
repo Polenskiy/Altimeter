@@ -26,7 +26,6 @@ final class MapInteractor {
             guard let data = data, error == nil else {
                 return
             }
-            //Не вызывается
             self.output?.didUpdate(barometer: data)
         }
     }

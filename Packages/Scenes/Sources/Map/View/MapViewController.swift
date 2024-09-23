@@ -59,14 +59,13 @@ extension MapViewController: MapViewControllerInput {
         configureMapScrollView()
     }
 
-    func updateLocation(viewModelLocation: InformationViewModel.Location) {
-        mapDataScrollView.updateFull(viewModelLocation: viewModelLocation)
-        mapDataScrollView.updateBase(viewModelLocation: viewModelLocation)
+    func updateLocation(viewModel: InformationViewModel.Location) {
+        mapDataScrollView.updateFull(viewModelLocation: viewModel)
+        mapDataScrollView.updateBase(viewModelLocation: viewModel)
     }
     
-    //не вызывается
-    func updateBarometer(viewModelBarometer: InformationViewModel.Barometer) {
-        mapDataScrollView.updateBarometer(viewModelBarometer: viewModelBarometer)
+    func updateBarometer(viewModel: InformationViewModel.Barometer) {
+        mapDataScrollView.updateBarometer(viewModelBarometer: viewModel)
     }
 }
 

@@ -55,7 +55,7 @@ extension MapPresenter: MapInteractorOutput {
             let latitude = String(format: "%.2f", location.coordinate.latitude)
             let longitude = String(format: "%.2f", location.coordinate.longitude)
             
-            view.updateLocation(viewModelLocation: MapViewController.InformationViewModel.Location(
+            view.updateLocation(viewModel: MapViewController.InformationViewModel.Location(
                 speed: speed,
                 altitude: altitude,
                 latitude: latitude,
@@ -68,7 +68,7 @@ extension MapPresenter: MapInteractorOutput {
     func didUpdate(barometer: CMAltitudeData) {
         let barometerData = String(format: "%.2f", barometer.pressure.doubleValue)
         view.updateBarometer(
-            viewModelBarometer: MapViewController.InformationViewModel.Barometer(
+            viewModel: MapViewController.InformationViewModel.Barometer(
                 barometer: barometerData
             )
         )

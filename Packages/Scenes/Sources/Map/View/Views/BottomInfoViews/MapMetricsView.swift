@@ -7,22 +7,6 @@
 
 import UIKit
 
-extension MapMetricsView {
-    struct MapMetricsType {
-        enum  CoordinatesType {
-            case coordintesMetrics
-        }
-        
-        enum AddressType {
-            case addressMetrics
-        }
-        
-        enum BarometerMetricsType {
-            case barometerMetrics
-        }
-    }
-}
-
 final class MapMetricsView: UIView {
     
     private let stackView: UIStackView = {
@@ -97,15 +81,15 @@ private extension MapMetricsView {
 extension MapMetricsView {
     
     func updateBarometer(viewModelBarometer: MapViewController.InformationViewModel.Barometer) {
-        baromterOrAddressView.updateBarometer(viewModelBarometer: viewModelBarometer, type: .barometerMetrics)
+        baromterOrAddressView.updateBarometer(viewModelBarometer: viewModelBarometer)
     }
     
     func updateAddress(viewModel: MapViewController.InformationViewModel.Location) {
-        baromterOrAddressView.updateAddress(viewModelLocation: viewModel, type: .addressMetrics)
+        baromterOrAddressView.updateAddress(viewModelLocation: viewModel)
     }
     
     func updateCoordinates(viewModel: MapViewController.InformationViewModel.Location) {
-        baromterOrAddressView.updateCoordinates(viewModelLocation: viewModel, type: .coordintesMetrics)
+        baromterOrAddressView.updateCoordinates(viewModelLocation: viewModel)
     }
     
     func updateSpeed(viewModel: MapViewController.InformationViewModel.Location) {

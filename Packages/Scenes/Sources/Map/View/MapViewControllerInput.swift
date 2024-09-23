@@ -5,6 +5,6 @@
 //	Where my children
 //
 protocol MapViewControllerInput: BaseViewControllerInput {
-    func updateLocation(viewModelLocation: MapViewController.InformationViewModel.Location)
-    func updateBarometer( viewModelBarometer: MapViewController.InformationViewModel.Barometer)
+    func updateLocation(viewModel: MapViewController.InformationViewModel.Location)
+    func updateBarometer(viewModel: MapViewController.InformationViewModel.Barometer)
 }
