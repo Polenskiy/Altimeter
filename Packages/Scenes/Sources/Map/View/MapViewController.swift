@@ -7,17 +7,23 @@
 
 import UIKit
 
+// MARK: - InformationViewModel
 extension MapViewController {
-    struct MapInformationViewModel {
-        let speed: String
-        let altitude: String
-        let latitude: String
-        let longitude: String
-        let barometer: String
-        let address: String
+    struct InformationViewModel {
+        struct Location {
+            let speed: String
+            let altitude: String
+            let latitude: String
+            let longitude: String
+            let address: String
+        }
+        
+        struct Barometer {
+            let barometer: String
+        }
     }
 }
-
+// MARK: - MapViewController
 final class MapViewController: UIViewController {
     
     private let mapView = MapView()
@@ -31,7 +37,6 @@ final class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         output?.didTriggerViewReadyEvent()
-        setup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,7 +52,37 @@ final class MapViewController: UIViewController {
 
 // MARK: - MapViewControllerInput
 extension MapViewController: MapViewControllerInput {
+
     func setupInitialState() {
+        configureControlsView()
+        confugureMapView()
+        configureMapScrollView()
+    }
+
+    func updateLocation(viewModel: InformationViewModel.Location) {
+        mapDataScrollView.updateFull(viewModelLocation: viewModel)
+        mapDataScrollView.updateBase(viewModelLocation: viewModel)
+    }
+    
+    func updateBarometer(viewModel: InformationViewModel.Barometer) {
+        mapDataScrollView.updateBarometer(viewModelBarometer: viewModel)
+    }
+}
+
+private extension MapViewController {
+    
+    func confugureMapView() {
+        view.addSubview(mapView)
+        mapView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            mapView.topAnchor.constraint(equalTo: view.topAnchor),
+            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        ])
+    }
+    
+    func configureControlsView() {
         mapView.addSubview(controlsView)
         controlsView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -65,28 +100,6 @@ extension MapViewController: MapViewControllerInput {
             .layers { _ in },
             .menu { _ in },
             .position { _ in }
-        ])
-    }
-    
-    func updateData(with viewModel: MapInformationViewModel) {
-        mapDataScrollView.updateLocation(with: viewModel)
-    }
-}
-
-private extension MapViewController {
-    func setup() {
-        confugureMapView()
-        configureMapScrollView()
-    }
-    
-    func confugureMapView() {
-        view.addSubview(mapView)
-        mapView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            mapView.topAnchor.constraint(equalTo: view.topAnchor),
-            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
     }
     

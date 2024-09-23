@@ -82,8 +82,26 @@ private extension MapDataScrollView {
 }
 
 extension MapDataScrollView {
-    func updateLocation(with viewModel: MapViewController.MapInformationViewModel) {
-        fullMetricsView.update(with: viewModel, type: .fullMetrics)
-        basicMetricsView.update(with: viewModel, type: .baseMetrics)
+
+    func updateFull(
+        viewModelLocation:  MapViewController.InformationViewModel.Location
+    ) {
+        fullMetricsView.updateCoordinates(viewModel: viewModelLocation)
+        fullMetricsView.updateSpeed(viewModel: viewModelLocation)
+        fullMetricsView.updateAltitude(viewModel: viewModelLocation)
+    }
+    
+    func updateBarometer(
+        viewModelBarometer: MapViewController.InformationViewModel.Barometer
+    ) {
+        fullMetricsView.updateBarometer(viewModelBarometer: viewModelBarometer)
+    }
+    
+    func updateBase(
+        viewModelLocation:  MapViewController.InformationViewModel.Location
+    ) {
+        basicMetricsView.updateAddress(viewModel: viewModelLocation)
+        basicMetricsView.updateSpeed(viewModel: viewModelLocation)
+        basicMetricsView.updateAltitude(viewModel: viewModelLocation)
     }
 }

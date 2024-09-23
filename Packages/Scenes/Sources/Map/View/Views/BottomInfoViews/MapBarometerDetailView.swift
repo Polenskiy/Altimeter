@@ -52,29 +52,29 @@ private extension MapBarometerDetailView {
 
 extension MapBarometerDetailView {
     
-    func update(
-        with viewModel: MapViewController.MapInformationViewModel,
-        type: MapMetricsView.MapMetricsType
-    ) {
-        switch type {
-        case .fullMetrics:
-            verticalStackView.addArrangedSubview(barometerView)
-            verticalStackView.addArrangedSubview(coordinatesView)
+    func updateAddress(viewModelLocation: MapViewController.InformationViewModel.Location) {
+        verticalStackView.addArrangedSubview(addressView)
+        addressView.update(
+            title: "Address",
+            subtitle: viewModelLocation.address
+        )
+    }
+    
+    func updateCoordinates(viewModelLocation: MapViewController.InformationViewModel.Location) {
         
-            barometerView.updateTitleAndSubtitle(
-                title: "Barometer",
-                subtitle: viewModel.barometer
-            )
-            coordinatesView.updateTitleAndSubtitle(
-                title: "Coordinates",
-                subtitle:"\(viewModel.latitude), \(viewModel.longitude)"
-            )
-        case .baseMetrics:
-            verticalStackView.addArrangedSubview(addressView)
-            addressView.updateTitleAndSubtitle(
-                title: "Address",
-                subtitle: viewModel.address
-            )
-        }
+        verticalStackView.addArrangedSubview(coordinatesView)
+        coordinatesView.update(
+            title: "Coordinates",
+            subtitle:"\(viewModelLocation.latitude), \(viewModelLocation.longitude)"
+        )
+    }
+    
+    func updateBarometer(viewModelBarometer: MapViewController.InformationViewModel.Barometer) {
+        
+        verticalStackView.addArrangedSubview(barometerView)
+        barometerView.update(
+            title: "Barometer",
+            subtitle: viewModelBarometer.barometer
+        )
     }
 }

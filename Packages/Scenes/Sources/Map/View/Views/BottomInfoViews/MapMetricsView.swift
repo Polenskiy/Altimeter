@@ -7,13 +7,6 @@
 
 import UIKit
 
-extension MapMetricsView {
-    enum MapMetricsType {
-        case fullMetrics
-        case baseMetrics
-    }
-}
-
 final class MapMetricsView: UIView {
     
     private let stackView: UIStackView = {
@@ -86,12 +79,26 @@ private extension MapMetricsView {
 }
 
 extension MapMetricsView {
-    func update(
-        with viewModel: MapViewController.MapInformationViewModel,
-        type: MapMetricsType
-    ) {
-        baromterOrAddressView.update(with: viewModel, type: type)
+    
+    func updateBarometer(viewModelBarometer: MapViewController.InformationViewModel.Barometer) {
+        baromterOrAddressView.updateBarometer(viewModelBarometer: viewModelBarometer)
+    }
+    
+    func updateAddress(viewModel: MapViewController.InformationViewModel.Location) {
+        baromterOrAddressView.updateAddress(viewModelLocation: viewModel)
+    }
+    
+    func updateCoordinates(viewModel: MapViewController.InformationViewModel.Location) {
+        baromterOrAddressView.updateCoordinates(viewModelLocation: viewModel)
+    }
+    
+    func updateSpeed(viewModel: MapViewController.InformationViewModel.Location) {
+        baromterOrAddressView.updateSpeed(viewModelLocation: viewModel)
+    }
+    
+    func updateAltitude(viewModel: MapViewController.InformationViewModel.Location) {
         altitudeView.configure(with: "\(viewModel.altitude) m")
     }
 }
+
 
